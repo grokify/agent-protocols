@@ -1,0 +1,309 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grokify/pidl/main/schema/pidl.schema.json",
+  "protocol": {
+    "id": "idjag-token-exchange",
+    "name": "ID-JAG Token Exchange Sequence",
+    "version": "1.0",
+    "description": "Detailed token exchange flow showing assertion creation, validation, and access token issuance per RFC 8693.",
+    "category": "auth",
+    "references": [
+      {
+        "name": "draft-ietf-oauth-identity-assertion-authz-grant",
+        "url": "https://datatracker.ietf.org/doc/draft-ietf-oauth-identity-assertion-authz-grant/"
+      },
+      {
+        "name": "RFC 8693 - OAuth 2.0 Token Exchange",
+        "url": "https://tools.ietf.org/html/rfc8693"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "id": "agent",
+      "name": "AI Agent",
+      "type": "agent",
+      "description": "Agent requesting access token via assertion exchange"
+    },
+    {
+      "id": "issuer",
+      "name": "Assertion Issuer",
+      "type": "server",
+      "description": "Creates and signs JWT identity assertions"
+    },
+    {
+      "id": "auth_server",
+      "name": "Authorization Server",
+      "type": "authorization_server",
+      "description": "Validates assertions and issues access tokens"
+    },
+    {
+      "id": "jwks",
+      "name": "JWKS Endpoint",
+      "type": "server",
+      "description": "Publishes public keys for signature verification"
+    },
+    {
+      "id": "resource_server",
+      "name": "Resource Server",
+      "type": "resource_server",
+      "description": "Validates access tokens and serves protected resources"
+    }
+  ],
+  "phases": [
+    {
+      "id": "assertion_creation",
+      "name": "Assertion Creation",
+      "description": "Build and sign the identity assertion JWT"
+    },
+    {
+      "id": "token_request",
+      "name": "Token Exchange Request",
+      "description": "Submit assertion to authorization server"
+    },
+    {
+      "id": "assertion_validation",
+      "name": "Assertion Validation",
+      "description": "Verify signature and validate all claims"
+    },
+    {
+      "id": "token_issuance",
+      "name": "Access Token Issuance",
+      "description": "Generate and return access token"
+    },
+    {
+      "id": "resource_access",
+      "name": "Resource Access",
+      "description": "Use access token to call protected APIs"
+    }
+  ],
+  "flows": [
+    {
+      "from": "agent",
+      "to": "issuer",
+      "action": "request_assertion",
+      "label": "Request identity assertion",
+      "mode": "request",
+      "phase": "assertion_creation"
+    },
+    {
+      "from": "issuer",
+      "to": "issuer",
+      "action": "build_header",
+      "label": "Build JWT header (alg: RS256, typ: JWT, kid)",
+      "mode": "request",
+      "phase": "assertion_creation"
+    },
+    {
+      "from": "issuer",
+      "to": "issuer",
+      "action": "build_claims",
+      "label": "Build claims (iss, sub, aud, iat, exp, jti)",
+      "mode": "request",
+      "phase": "assertion_creation",
+      "description": "Include actor claim if delegated"
+    },
+    {
+      "from": "issuer",
+      "to": "issuer",
+      "action": "sign_assertion",
+      "label": "Sign with private key (RS256/ES256)",
+      "mode": "request",
+      "phase": "assertion_creation"
+    },
+    {
+      "from": "issuer",
+      "to": "agent",
+      "action": "return_assertion",
+      "label": "Signed JWT (header.payload.signature)",
+      "mode": "response",
+      "phase": "assertion_creation"
+    },
+    {
+      "from": "agent",
+      "to": "auth_server",
+      "action": "token_exchange",
+      "label": "POST /token",
+      "mode": "request",
+      "phase": "token_request",
+      "description": "grant_type=urn:ietf:params:oauth:grant-type:token-exchange"
+    },
+    {
+      "from": "auth_server",
+      "to": "auth_server",
+      "action": "parse_request",
+      "label": "Parse token exchange parameters",
+      "mode": "request",
+      "phase": "token_request",
+      "description": "Extract subject_token, subject_token_type, scope"
+    },
+    {
+      "from": "auth_server",
+      "to": "auth_server",
+      "action": "decode_jwt",
+      "label": "Decode JWT (extract header + payload)",
+      "mode": "request",
+      "phase": "assertion_validation"
+    },
+    {
+      "from": "auth_server",
+      "to": "auth_server",
+      "action": "extract_kid",
+      "label": "Extract key ID (kid) from header",
+      "mode": "request",
+      "phase": "assertion_validation"
+    },
+    {
+      "from": "auth_server",
+      "to": "jwks",
+      "action": "fetch_jwks",
+      "label": "GET /.well-known/jwks.json",
+      "mode": "request",
+      "phase": "assertion_validation"
+    },
+    {
+      "from": "jwks",
+      "to": "auth_server",
+      "action": "return_jwks",
+      "label": "JWK Set (keys array)",
+      "mode": "response",
+      "phase": "assertion_validation"
+    },
+    {
+      "from": "auth_server",
+      "to": "auth_server",
+      "action": "find_key",
+      "label": "Find key by kid in JWK Set",
+      "mode": "request",
+      "phase": "assertion_validation"
+    },
+    {
+      "from": "auth_server",
+      "to": "auth_server",
+      "action": "verify_signature",
+      "label": "Verify JWT signature with public key",
+      "mode": "request",
+      "phase": "assertion_validation"
+    },
+    {
+      "from": "auth_server",
+      "to": "auth_server",
+      "action": "validate_issuer",
+      "label": "Validate iss claim (trusted issuer)",
+      "mode": "request",
+      "phase": "assertion_validation"
+    },
+    {
+      "from": "auth_server",
+      "to": "auth_server",
+      "action": "validate_audience",
+      "label": "Validate aud claim (matches this server)",
+      "mode": "request",
+      "phase": "assertion_validation"
+    },
+    {
+      "from": "auth_server",
+      "to": "auth_server",
+      "action": "validate_expiration",
+      "label": "Validate exp claim (not expired)",
+      "mode": "request",
+      "phase": "assertion_validation"
+    },
+    {
+      "from": "auth_server",
+      "to": "auth_server",
+      "action": "validate_actor",
+      "label": "Validate act claim if present (delegation)",
+      "mode": "request",
+      "phase": "assertion_validation"
+    },
+    {
+      "from": "auth_server",
+      "to": "auth_server",
+      "action": "apply_policies",
+      "label": "Apply authorization policies",
+      "mode": "request",
+      "phase": "token_issuance",
+      "description": "Check scope, delegation rules, rate limits"
+    },
+    {
+      "from": "auth_server",
+      "to": "auth_server",
+      "action": "generate_token",
+      "label": "Generate access token (preserve sub, act)",
+      "mode": "request",
+      "phase": "token_issuance"
+    },
+    {
+      "from": "auth_server",
+      "to": "auth_server",
+      "action": "sign_token",
+      "label": "Sign access token",
+      "mode": "request",
+      "phase": "token_issuance"
+    },
+    {
+      "from": "auth_server",
+      "to": "agent",
+      "action": "token_response",
+      "label": "200 OK (access_token, token_type, expires_in)",
+      "mode": "response",
+      "phase": "token_issuance"
+    },
+    {
+      "from": "agent",
+      "to": "resource_server",
+      "action": "api_request",
+      "label": "GET /api/resource (Authorization: Bearer)",
+      "mode": "request",
+      "phase": "resource_access"
+    },
+    {
+      "from": "resource_server",
+      "to": "jwks",
+      "action": "fetch_token_keys",
+      "label": "GET /.well-known/jwks.json",
+      "mode": "request",
+      "phase": "resource_access"
+    },
+    {
+      "from": "jwks",
+      "to": "resource_server",
+      "action": "return_token_keys",
+      "label": "JWK Set",
+      "mode": "response",
+      "phase": "resource_access"
+    },
+    {
+      "from": "resource_server",
+      "to": "resource_server",
+      "action": "verify_access_token",
+      "label": "Verify access token signature",
+      "mode": "request",
+      "phase": "resource_access"
+    },
+    {
+      "from": "resource_server",
+      "to": "resource_server",
+      "action": "check_scope",
+      "label": "Check scope claim against required permissions",
+      "mode": "request",
+      "phase": "resource_access"
+    },
+    {
+      "from": "resource_server",
+      "to": "resource_server",
+      "action": "extract_identity",
+      "label": "Extract sub (user) and act (agent) for authz",
+      "mode": "request",
+      "phase": "resource_access"
+    },
+    {
+      "from": "resource_server",
+      "to": "agent",
+      "action": "api_response",
+      "label": "200 OK (protected resource data)",
+      "mode": "response",
+      "phase": "resource_access"
+    }
+  ]
+}

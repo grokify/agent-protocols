@@ -1,0 +1,28 @@
+digraph Protocol {
+    rankdir=LR;
+    node [shape=box, style=rounded];
+    edge [fontsize=10];
+    label="ID-JAG Token Exchange Sequence";
+    labelloc=t;
+    fontsize=14;
+
+    agent [label="AI Agent", shape=hexagon];
+    issuer [label="Assertion Issuer", shape=box3d];
+    auth_server [label="Authorization Server", shape=ellipse];
+    jwks [label="JWKS Endpoint", shape=box3d];
+    resource_server [label="Resource Server", shape=box3d];
+
+    agent -> issuer [label="Request identity assertion"];
+    issuer -> issuer [label="Build JWT header (alg: RS256, typ: JWT, kid)\nBuild claims (iss, sub, aud, iat, exp, jti)\nSign with private key (RS256/ES256)"];
+    issuer -> agent [label="Signed JWT (header.payload.signature)"];
+    agent -> auth_server [label="POST /token"];
+    auth_server -> auth_server [label="Parse token exchange parameters\nDecode JWT (extract header + payload)\n... (+10 more)"];
+    auth_server -> jwks [label="GET /.well-known/jwks.json"];
+    jwks -> auth_server [label="JWK Set (keys array)"];
+    auth_server -> agent [label="200 OK (access_token, token_type, expires_in)"];
+    agent -> resource_server [label="GET /api/resource (Authorization: Bearer)"];
+    resource_server -> jwks [label="GET /.well-known/jwks.json"];
+    jwks -> resource_server [label="JWK Set"];
+    resource_server -> resource_server [label="Verify access token signature\nCheck scope claim against required permissions\nExtract sub (user) and act (agent) for authz"];
+    resource_server -> agent [label="200 OK (protected resource data)"];
+}

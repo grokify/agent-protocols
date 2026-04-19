@@ -1,0 +1,49 @@
+@startuml
+title ID-JAG Token Exchange Sequence
+
+participant "AI Agent" as agent
+participant "Assertion Issuer" as issuer
+participant "Authorization Server" as auth_server
+participant "JWKS Endpoint" as jwks
+participant "Resource Server" as resource_server
+
+
+== Assertion Creation ==
+agent -> issuer: Request identity assertion
+issuer -> issuer: Build JWT header (alg: RS256, typ: JWT, kid)
+issuer -> issuer: Build claims (iss, sub, aud, iat, exp, jti)
+issuer -> issuer: Sign with private key (RS256/ES256)
+issuer --> agent: Signed JWT (header.payload.signature)
+
+== Token Exchange Request ==
+agent -> auth_server: POST /token
+auth_server -> auth_server: Parse token exchange parameters
+
+== Assertion Validation ==
+auth_server -> auth_server: Decode JWT (extract header + payload)
+auth_server -> auth_server: Extract key ID (kid) from header
+auth_server -> jwks: GET /.well-known/jwks.json
+jwks --> auth_server: JWK Set (keys array)
+auth_server -> auth_server: Find key by kid in JWK Set
+auth_server -> auth_server: Verify JWT signature with public key
+auth_server -> auth_server: Validate iss claim (trusted issuer)
+auth_server -> auth_server: Validate aud claim (matches this server)
+auth_server -> auth_server: Validate exp claim (not expired)
+auth_server -> auth_server: Validate act claim if present (delegation)
+
+== Access Token Issuance ==
+auth_server -> auth_server: Apply authorization policies
+auth_server -> auth_server: Generate access token (preserve sub, act)
+auth_server -> auth_server: Sign access token
+auth_server --> agent: 200 OK (access_token, token_type, expires_in)
+
+== Resource Access ==
+agent -> resource_server: GET /api/resource (Authorization: Bearer)
+resource_server -> jwks: GET /.well-known/jwks.json
+jwks --> resource_server: JWK Set
+resource_server -> resource_server: Verify access token signature
+resource_server -> resource_server: Check scope claim against required permissions
+resource_server -> resource_server: Extract sub (user) and act (agent) for authz
+resource_server --> agent: 200 OK (protected resource data)
+
+@enduml

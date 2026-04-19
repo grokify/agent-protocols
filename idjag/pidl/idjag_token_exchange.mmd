@@ -1,0 +1,57 @@
+sequenceDiagram
+    title ID-JAG Token Exchange Sequence
+    autonumber
+
+    participant agent as AI Agent
+    participant issuer as Assertion Issuer
+    participant auth_server as Authorization Server
+    participant jwks as JWKS Endpoint
+    participant resource_server as Resource Server
+
+    rect rgb(240, 240, 240)
+    note right of agent: Assertion Creation
+    agent->>issuer: Request identity assertion
+    issuer->>issuer: Build JWT header (alg&&#35;58; RS256, typ&&#35;58; JWT, kid)
+    issuer->>issuer: Build claims (iss, sub, aud, iat, exp, jti)
+    issuer->>issuer: Sign with private key (RS256/ES256)
+    issuer-->>agent: Signed JWT (header.payload.signature)
+    end
+
+    rect rgb(240, 240, 240)
+    note right of agent: Token Exchange Request
+    agent->>auth_server: POST /token
+    auth_server->>auth_server: Parse token exchange parameters
+    end
+
+    rect rgb(240, 240, 240)
+    note right of agent: Assertion Validation
+    auth_server->>auth_server: Decode JWT (extract header + payload)
+    auth_server->>auth_server: Extract key ID (kid) from header
+    auth_server->>jwks: GET /.well-known/jwks.json
+    jwks-->>auth_server: JWK Set (keys array)
+    auth_server->>auth_server: Find key by kid in JWK Set
+    auth_server->>auth_server: Verify JWT signature with public key
+    auth_server->>auth_server: Validate iss claim (trusted issuer)
+    auth_server->>auth_server: Validate aud claim (matches this server)
+    auth_server->>auth_server: Validate exp claim (not expired)
+    auth_server->>auth_server: Validate act claim if present (delegation)
+    end
+
+    rect rgb(240, 240, 240)
+    note right of agent: Access Token Issuance
+    auth_server->>auth_server: Apply authorization policies
+    auth_server->>auth_server: Generate access token (preserve sub, act)
+    auth_server->>auth_server: Sign access token
+    auth_server-->>agent: 200 OK (access_token, token_type, expires_in)
+    end
+
+    rect rgb(240, 240, 240)
+    note right of agent: Resource Access
+    agent->>resource_server: GET /api/resource (Authorization&&#35;58; Bearer)
+    resource_server->>jwks: GET /.well-known/jwks.json
+    jwks-->>resource_server: JWK Set
+    resource_server->>resource_server: Verify access token signature
+    resource_server->>resource_server: Check scope claim against required permissions
+    resource_server->>resource_server: Extract sub (user) and act (agent) for authz
+    resource_server-->>agent: 200 OK (protected resource data)
+    end
