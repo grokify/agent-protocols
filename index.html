@@ -254,6 +254,26 @@
   
 
       
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="aims/overview/" class="md-tabs__link">
+          
+  
+  
+  AIMS
+
+        </a>
+      </li>
+    
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -443,6 +463,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#aims" class="md-nav__link">
+    <span class="md-ellipsis">
+      AIMS
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -454,6 +483,30 @@
       Related Specifications
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Related Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id-jag_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ID-JAG
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aims_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      AIMS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -708,6 +761,127 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AIMS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            AIMS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aims/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aims/getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aims/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -822,6 +996,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#aims" class="md-nav__link">
+    <span class="md-ellipsis">
+      AIMS
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -833,6 +1016,30 @@
       Related Specifications
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Related Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id-jag_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ID-JAG
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aims_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      AIMS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -862,7 +1069,11 @@
 <p>This library implements draft specifications that are subject to change.</p>
 </div>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>This repository provides Go libraries for emerging agent-to-agent protocols, starting with <strong>ID-JAG</strong> (Identity Assertion JWT Authorization Grant).</p>
+<p>This repository provides Go libraries for emerging agent-to-agent protocols:</p>
+<ul>
+<li><strong>ID-JAG</strong> - Identity Assertion JWT Authorization Grant for OAuth 2.0 token exchange</li>
+<li><strong>AIMS</strong> - Agent Identity Management System using SPIFFE and WIMSE standards</li>
+</ul>
 <p><img alt="ID-JAG Architecture" src="idjag/diagrams/architecture.svg" /></p>
 <h2 id="what-is-id-jag">What is ID-JAG?<a class="headerlink" href="#what-is-id-jag" title="Permanent link">&para;</a></h2>
 <p>ID-JAG enables secure token exchange where an agent presents a signed JWT assertion to obtain an access token. It solves key challenges in agent authentication:</p>
@@ -983,12 +1194,25 @@
 <li><a href="idjag/examples/">Examples</a> - Running the demo applications</li>
 <li><a href="idjag/api-reference/">API Reference</a> - Complete Go package documentation</li>
 </ul>
+<h3 id="aims">AIMS<a class="headerlink" href="#aims" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="aims/overview/">Overview</a> - AIMS framework introduction</li>
+<li><a href="aims/getting-started/">Getting Started</a> - Installation and first steps</li>
+<li><a href="aims/examples/">Examples</a> - Running the demo applications</li>
+</ul>
 <h2 id="related-specifications">Related Specifications<a class="headerlink" href="#related-specifications" title="Permanent link">&para;</a></h2>
+<h3 id="id-jag_1">ID-JAG<a class="headerlink" href="#id-jag_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-identity-assertion-authz-grant/">draft-ietf-oauth-identity-assertion-authz-grant</a></li>
 <li><a href="https://tools.ietf.org/html/rfc8693">RFC 8693 - OAuth 2.0 Token Exchange</a></li>
 <li><a href="https://tools.ietf.org/html/rfc7519">RFC 7519 - JSON Web Token</a></li>
 <li><a href="https://tools.ietf.org/html/rfc7523">RFC 7523 - JWT Bearer Assertion</a></li>
+</ul>
+<h3 id="aims_1">AIMS<a class="headerlink" href="#aims_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://datatracker.ietf.org/doc/html/draft-klrc-aiagent-auth-00">draft-klrc-aiagent-auth-00</a> - AIMS specification</li>
+<li><a href="https://datatracker.ietf.org/doc/draft-ietf-wimse-s2s-protocol/">draft-ietf-wimse-s2s-protocol</a> - WIMSE S2S Protocol</li>
+<li><a href="https://spiffe.io/">SPIFFE</a> - Secure Production Identity Framework For Everyone</li>
 </ul>
 
 
