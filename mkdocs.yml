@@ -52,12 +52,13 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Getting Started: getting-started.md
-  - Protocol Overview: protocol-overview.md
-  - Examples: examples.md
-  - API Reference: api-reference.md
-  - Presentations:
-    - ID-JAG Introduction: presentations/idjag-intro.md
+  - ID-JAG:
+    - Overview: idjag/protocol-overview.md
+    - Getting Started: idjag/getting-started.md
+    - Examples: idjag/examples.md
+    - API Reference: idjag/api-reference.md
+    - Presentations:
+      - Introduction: idjag/presentations/idjag-intro.md
 
 extra:
   social:

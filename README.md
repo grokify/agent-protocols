@@ -113,8 +113,8 @@ go run ./idjag/examples/simple
 
 ## Documentation
 
-- [Getting Started](./docs/getting-started.md)
-- [Protocol Overview](./docs/protocol-overview.md)
+- [Getting Started](./docs/idjag/getting-started.md)
+- [Protocol Overview](./docs/idjag/protocol-overview.md)
 - [API Reference](https://pkg.go.dev/github.com/grokify/agent-protocols)
 
 ## Related Specifications

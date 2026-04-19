@@ -9,7 +9,7 @@ Go implementation of agent-to-agent communication protocols.
 
 This repository provides Go libraries for emerging agent-to-agent protocols, starting with **ID-JAG** (Identity Assertion JWT Authorization Grant).
 
-![ID-JAG Architecture](diagrams/architecture.svg)
+![ID-JAG Architecture](idjag/diagrams/architecture.svg)
 
 ## What is ID-JAG?
 
@@ -97,10 +97,12 @@ func main() {
 
 ## Documentation
 
-- [Getting Started](getting-started.md) - Installation and first steps
-- [Protocol Overview](protocol-overview.md) - How ID-JAG works with diagrams
-- [Examples](examples.md) - Running the demo applications
-- [API Reference](api-reference.md) - Complete Go package documentation
+### ID-JAG
+
+- [Getting Started](idjag/getting-started.md) - Installation and first steps
+- [Protocol Overview](idjag/protocol-overview.md) - How ID-JAG works with diagrams
+- [Examples](idjag/examples.md) - Running the demo applications
+- [API Reference](idjag/api-reference.md) - Complete Go package documentation
 
 ## Related Specifications
 
