@@ -56,6 +56,7 @@ nav:
     - Overview: idjag/protocol-overview.md
     - Getting Started: idjag/getting-started.md
     - Examples: idjag/examples.md
+    - Diagrams: idjag/diagrams-comparison.md
     - API Reference: idjag/api-reference.md
     - Presentations:
       - Introduction: idjag/presentations/idjag-intro.md
