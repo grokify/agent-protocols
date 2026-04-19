@@ -24,29 +24,29 @@ Diagrams are generated using the `pidl` CLI tool:
 Install the PIDL CLI:
 
 ```bash
-go install github.com/grokify/pidl/cmd/pidl@latest
+go install github.com/grokify/idjag/pidl/cmd/pidl@latest
 ```
 
 Validate definitions:
 
 ```bash
-pidl validate pidl/*.json
+pidl validate idjag/pidl/*.json
 ```
 
 Generate all formats:
 
 ```bash
 # PlantUML
-pidl generate -f plantuml -o pidl/idjag_simple.puml pidl/idjag_simple.json
-pidl generate -f plantuml -o pidl/idjag_delegation.puml pidl/idjag_delegation.json
+pidl generate -f plantuml -o idjag/pidl/idjag_simple.puml idjag/pidl/idjag_simple.json
+pidl generate -f plantuml -o idjag/pidl/idjag_delegation.puml idjag/pidl/idjag_delegation.json
 
 # Mermaid
-pidl generate -f mermaid -o pidl/idjag_simple.mmd pidl/idjag_simple.json
-pidl generate -f mermaid -o pidl/idjag_delegation.mmd pidl/idjag_delegation.json
+pidl generate -f mermaid -o idjag/pidl/idjag_simple.mmd idjag/pidl/idjag_simple.json
+pidl generate -f mermaid -o idjag/pidl/idjag_delegation.mmd idjag/pidl/idjag_delegation.json
 
 # Graphviz DOT
-pidl generate -f dot -o pidl/idjag_simple.dot pidl/idjag_simple.json
-pidl generate -f dot -o pidl/idjag_delegation.dot pidl/idjag_delegation.json
+pidl generate -f dot -o idjag/pidl/idjag_simple.dot idjag/pidl/idjag_simple.json
+pidl generate -f dot -o idjag/pidl/idjag_delegation.dot idjag/pidl/idjag_delegation.json
 ```
 
 ## Rendering to Images
@@ -55,24 +55,24 @@ pidl generate -f dot -o pidl/idjag_delegation.dot pidl/idjag_delegation.json
 
 ```bash
 # Using PlantUML jar
-java -jar plantuml.jar -tsvg pidl/idjag_simple.puml
+java -jar plantuml.jar -tsvg idjag/pidl/idjag_simple.puml
 
 # Using PlantUML server
-curl -X POST --data-binary @pidl/idjag_simple.puml https://www.plantuml.com/plantuml/svg/
+curl -X POST --data-binary @idjag/pidl/idjag_simple.puml https://www.plantuml.com/plantuml/svg/
 ```
 
 ### Mermaid to SVG/PNG
 
 ```bash
 # Using mermaid-cli (mmdc)
-npx @mermaid-js/mermaid-cli -i pidl/idjag_simple.mmd -o pidl/idjag_simple.svg
+npx @mermaid-js/mermaid-cli -i idjag/pidl/idjag_simple.mmd -o idjag/pidl/idjag_simple.svg
 ```
 
 ### Graphviz DOT to SVG/PNG
 
 ```bash
-dot -Tsvg pidl/idjag_simple.dot -o pidl/idjag_simple_flow.svg
-dot -Tpng pidl/idjag_delegation.dot -o pidl/idjag_delegation_flow.png
+dot -Tsvg idjag/pidl/idjag_simple.dot -o idjag/pidl/idjag_simple_flow.svg
+dot -Tpng idjag/pidl/idjag_delegation.dot -o idjag/pidl/idjag_delegation_flow.png
 ```
 
 ## Protocol Structure

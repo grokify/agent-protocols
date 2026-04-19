@@ -34,6 +34,8 @@ Go implementation of agent-to-agent communication protocols, starting with ID-JA
 This repository provides Go libraries for emerging agent-to-agent protocols:
 
 - **[idjag](./idjag/)** - Identity Assertion JWT Authorization Grant based on [draft-ietf-oauth-identity-assertion-authz-grant](https://datatracker.ietf.org/doc/draft-ietf-oauth-identity-assertion-authz-grant/)
+  - [Examples](./idjag/examples/) - Working demos
+  - [PIDL Definitions](./idjag/pidl/) - Protocol diagrams
 
 ## Installation
 
@@ -98,15 +100,15 @@ assertion := &idjag.Assertion{
 
 ## Examples
 
-See the [examples](./examples/) directory for complete working demos:
+See the [idjag/examples](./idjag/examples/) directory for complete working demos:
 
-- **[simple](./examples/simple/)** - Agent-only flow without human delegation
-- **[delegation](./examples/delegation/)** - Human-to-agent delegation flow
+- **[simple](./idjag/examples/simple/)** - Agent-only flow without human delegation
+- **[delegation](./idjag/examples/delegation/)** - Human-to-agent delegation flow
 
 Run an example:
 
 ```bash
-go run ./examples/simple
+go run ./idjag/examples/simple
 ```
 
 ## Documentation

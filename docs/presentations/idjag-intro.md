@@ -177,10 +177,10 @@ resp, _ := client.ExchangeAssertion(ctx, jwt, "calendar:read")
 
 ```bash
 # Simple agent-only flow
-go run ./examples/simple
+go run ./idjag/examples/simple
 
 # Human-to-agent delegation
-go run ./examples/delegation
+go run ./idjag/examples/delegation
 ```
 
 ---

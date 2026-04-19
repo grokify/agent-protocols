@@ -18,7 +18,7 @@ The simple example demonstrates an agent authenticating on its own behalf withou
 ### Running the Example
 
 ```bash
-go run ./examples/simple
+go run ./idjag/examples/simple
 ```
 
 ### Expected Output
@@ -95,7 +95,7 @@ The delegation example demonstrates an agent acting on behalf of a human user us
 ### Running the Example
 
 ```bash
-go run ./examples/delegation
+go run ./idjag/examples/delegation
 ```
 
 ### Expected Output
