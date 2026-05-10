@@ -187,7 +187,7 @@ go run ./idjag/examples/delegation
 
 # Resources
 
-- **GitHub**: github.com/grokify/agent-protocols
+- **GitHub**: github.com/aistandardsio/agent-protocols
 - **IETF Draft**: datatracker.ietf.org/doc/draft-ietf-oauth-identity-assertion-authz-grant/
 - **RFC 8693**: tools.ietf.org/html/rfc8693
 - **RFC 7519**: tools.ietf.org/html/rfc7519
@@ -198,4 +198,4 @@ go run ./idjag/examples/delegation
 
 ## Questions?
 
-**github.com/grokify/agent-protocols**
+**github.com/aistandardsio/agent-protocols**

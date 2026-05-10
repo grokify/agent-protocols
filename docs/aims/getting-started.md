@@ -5,7 +5,7 @@ This guide walks you through using the AIMS package for AI agent authentication.
 ## Installation
 
 ```bash
-go get github.com/grokify/agent-protocols
+go get github.com/aistandardsio/agent-protocols
 ```
 
 ## Creating a SPIFFE ID
@@ -17,7 +17,7 @@ package main
 
 import (
     "fmt"
-    "github.com/grokify/agent-protocols/aims"
+    "github.com/aistandardsio/agent-protocols/aims"
 )
 
 func main() {
@@ -57,7 +57,7 @@ import (
     "fmt"
     "time"
 
-    "github.com/grokify/agent-protocols/aims"
+    "github.com/aistandardsio/agent-protocols/aims"
 )
 
 func main() {
@@ -99,7 +99,7 @@ import (
     "crypto/rand"
     "net/http"
 
-    "github.com/grokify/agent-protocols/aims"
+    "github.com/aistandardsio/agent-protocols/aims"
 )
 
 func main() {
@@ -135,7 +135,7 @@ import (
     "fmt"
     "time"
 
-    "github.com/grokify/agent-protocols/aims"
+    "github.com/aistandardsio/agent-protocols/aims"
 )
 
 func main() {
@@ -190,4 +190,4 @@ go run ./aims/examples/mtls
 ## Next Steps
 
 - [Examples](examples.md) - Detailed walkthrough of the example applications
-- [API Reference](https://pkg.go.dev/github.com/grokify/agent-protocols/aims) - Complete Go package documentation
+- [API Reference](https://pkg.go.dev/github.com/aistandardsio/agent-protocols/aims) - Complete Go package documentation

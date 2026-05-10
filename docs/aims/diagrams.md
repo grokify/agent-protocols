@@ -34,7 +34,7 @@ sequenceDiagram
     end
 ```
 
-**PIDL Source:** [`aims_wit_flow.json`](https://github.com/grokify/agent-protocols/blob/main/aims/pidl/aims_wit_flow.json)
+**PIDL Source:** [`aims_wit_flow.json`](https://github.com/aistandardsio/agent-protocols/blob/main/aims/pidl/aims_wit_flow.json)
 
 ---
 
@@ -75,7 +75,7 @@ sequenceDiagram
     end
 ```
 
-**PIDL Source:** [`aims_wpt_flow.json`](https://github.com/grokify/agent-protocols/blob/main/aims/pidl/aims_wpt_flow.json)
+**PIDL Source:** [`aims_wpt_flow.json`](https://github.com/aistandardsio/agent-protocols/blob/main/aims/pidl/aims_wpt_flow.json)
 
 ---
 

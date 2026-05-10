@@ -1,4 +1,4 @@
-module github.com/grokify/agent-protocols
+module github.com/aistandardsio/agent-protocols
 
 go 1.24
 

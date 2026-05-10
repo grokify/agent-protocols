@@ -8,22 +8,22 @@
 [![Visualization][viz-svg]][viz-url]
 [![License][license-svg]][license-url]
 
- [go-ci-svg]: https://github.com/grokify/agent-protocols/actions/workflows/go-ci.yaml/badge.svg?branch=main
- [go-ci-url]: https://github.com/grokify/agent-protocols/actions/workflows/go-ci.yaml
- [go-lint-svg]: https://github.com/grokify/agent-protocols/actions/workflows/go-lint.yaml/badge.svg?branch=main
- [go-lint-url]: https://github.com/grokify/agent-protocols/actions/workflows/go-lint.yaml
- [go-sast-svg]: https://github.com/grokify/agent-protocols/actions/workflows/go-sast-codeql.yaml/badge.svg?branch=main
- [go-sast-url]: https://github.com/grokify/agent-protocols/actions/workflows/go-sast-codeql.yaml
- [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/agent-protocols
- [goreport-url]: https://goreportcard.com/report/github.com/grokify/agent-protocols
- [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/agent-protocols
- [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/agent-protocols
+ [go-ci-svg]: https://github.com/aistandardsio/agent-protocols/actions/workflows/go-ci.yaml/badge.svg?branch=main
+ [go-ci-url]: https://github.com/aistandardsio/agent-protocols/actions/workflows/go-ci.yaml
+ [go-lint-svg]: https://github.com/aistandardsio/agent-protocols/actions/workflows/go-lint.yaml/badge.svg?branch=main
+ [go-lint-url]: https://github.com/aistandardsio/agent-protocols/actions/workflows/go-lint.yaml
+ [go-sast-svg]: https://github.com/aistandardsio/agent-protocols/actions/workflows/go-sast-codeql.yaml/badge.svg?branch=main
+ [go-sast-url]: https://github.com/aistandardsio/agent-protocols/actions/workflows/go-sast-codeql.yaml
+ [goreport-svg]: https://goreportcard.com/badge/github.com/aistandardsio/agent-protocols
+ [goreport-url]: https://goreportcard.com/report/github.com/aistandardsio/agent-protocols
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/aistandardsio/agent-protocols
+ [docs-godoc-url]: https://pkg.go.dev/github.com/aistandardsio/agent-protocols
  [viz-svg]: https://img.shields.io/badge/visualizaton-Go-blue.svg
- [viz-url]: https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=grokify%2Fagent-protocols
+ [viz-url]: https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=aistandardsio%2Fagent-protocols
  [loc-svg]: https://tokei.rs/b1/github/grokify/agent-protocols
- [repo-url]: https://github.com/grokify/agent-protocols
+ [repo-url]: https://github.com/aistandardsio/agent-protocols
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-url]: https://github.com/grokify/agent-protocols/blob/master/LICENSE
+ [license-url]: https://github.com/aistandardsio/agent-protocols/blob/master/LICENSE
 
 Go implementation of agent-to-agent communication protocols, starting with ID-JAG (Identity Assertion JWT Authorization Grant).
 
@@ -44,7 +44,7 @@ This repository provides Go libraries for emerging agent-to-agent protocols:
 ## Installation
 
 ```bash
-go get github.com/grokify/agent-protocols
+go get github.com/aistandardsio/agent-protocols
 ```
 
 ## Quick Start
@@ -59,7 +59,7 @@ import (
     "fmt"
     "time"
 
-    "github.com/grokify/agent-protocols/idjag"
+    "github.com/aistandardsio/agent-protocols/idjag"
 )
 
 func main() {
@@ -119,7 +119,7 @@ go run ./idjag/examples/simple
 
 - **ID-JAG**: [Getting Started](./docs/idjag/getting-started.md) | [Protocol Overview](./docs/idjag/protocol-overview.md)
 - **AIMS**: [Getting Started](./docs/aims/getting-started.md) | [Overview](./docs/aims/overview.md)
-- [API Reference](https://pkg.go.dev/github.com/grokify/agent-protocols)
+- [API Reference](https://pkg.go.dev/github.com/aistandardsio/agent-protocols)
 - [Changelog](./CHANGELOG.md)
 
 ## Related Specifications

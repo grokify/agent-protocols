@@ -31,7 +31,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/grokify/agent-protocols/aims"
+	"github.com/aistandardsio/agent-protocols/aims"
 )
 
 const (

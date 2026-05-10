@@ -31,7 +31,7 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/grokify/agent-protocols/idjag"
+	"github.com/aistandardsio/agent-protocols/idjag"
 )
 
 const (

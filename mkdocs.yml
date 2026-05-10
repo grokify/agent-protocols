@@ -1,8 +1,8 @@
 site_name: agent-protocols
 site_description: Go implementation of agent-to-agent communication protocols
-site_url: https://grokify.github.io/agent-protocols/
-repo_url: https://github.com/grokify/agent-protocols
-repo_name: grokify/agent-protocols
+site_url: https://aistandardsio.github.io/agent-protocols/
+repo_url: https://github.com/aistandardsio/agent-protocols
+repo_name: aistandardsio/agent-protocols
 
 theme:
   name: material
@@ -76,7 +76,7 @@ nav:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/grokify/agent-protocols
+      link: https://github.com/aistandardsio/agent-protocols
 
 plugins:
   - search

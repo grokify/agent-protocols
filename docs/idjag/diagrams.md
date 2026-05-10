@@ -44,7 +44,7 @@ sequenceDiagram
     end
 ```
 
-**PIDL Source:** [`idjag_simple.json`](https://github.com/grokify/agent-protocols/blob/main/idjag/pidl/idjag_simple.json)
+**PIDL Source:** [`idjag_simple.json`](https://github.com/aistandardsio/agent-protocols/blob/main/idjag/pidl/idjag_simple.json)
 
 ---
 
@@ -100,7 +100,7 @@ sequenceDiagram
     end
 ```
 
-**PIDL Source:** [`idjag_delegation.json`](https://github.com/grokify/agent-protocols/blob/main/idjag/pidl/idjag_delegation.json)
+**PIDL Source:** [`idjag_delegation.json`](https://github.com/aistandardsio/agent-protocols/blob/main/idjag/pidl/idjag_delegation.json)
 
 ---
 
@@ -167,7 +167,7 @@ sequenceDiagram
     end
 ```
 
-**PIDL Source:** [`idjag_token_exchange.json`](https://github.com/grokify/agent-protocols/blob/main/idjag/pidl/idjag_token_exchange.json)
+**PIDL Source:** [`idjag_token_exchange.json`](https://github.com/aistandardsio/agent-protocols/blob/main/idjag/pidl/idjag_token_exchange.json)
 
 ---
 

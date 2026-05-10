@@ -50,7 +50,7 @@ This repository provides Go libraries for emerging AI agent authentication and a
 ## Installation
 
 ```bash
-go get github.com/grokify/agent-protocols
+go get github.com/aistandardsio/agent-protocols
 ```
 
 ## Quick Examples
@@ -58,7 +58,7 @@ go get github.com/grokify/agent-protocols
 === "ID-JAG"
 
     ```go
-    import "github.com/grokify/agent-protocols/idjag"
+    import "github.com/aistandardsio/agent-protocols/idjag"
 
     // Agent authenticates as itself
     assertion := idjag.NewAssertion(
@@ -76,7 +76,7 @@ go get github.com/grokify/agent-protocols
 === "AIMS"
 
     ```go
-    import "github.com/grokify/agent-protocols/aims"
+    import "github.com/aistandardsio/agent-protocols/aims"
 
     // Create SPIFFE ID for agent
     spiffeID, _ := aims.NewSPIFFEID("example.com", "/agent/calendar-bot")

@@ -5,7 +5,7 @@ This guide walks you through setting up and using the ID-JAG library.
 ## Installation
 
 ```bash
-go get github.com/grokify/agent-protocols
+go get github.com/aistandardsio/agent-protocols
 ```
 
 ## Understanding ID-JAG
@@ -45,7 +45,7 @@ An assertion is a JWT that represents an identity claim.
 ```go
 import (
     "time"
-    "github.com/grokify/agent-protocols/idjag"
+    "github.com/aistandardsio/agent-protocols/idjag"
 )
 
 // Agent authenticates as itself
