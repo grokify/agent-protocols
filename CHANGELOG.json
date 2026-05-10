@@ -1,7 +1,7 @@
 {
   "irVersion": "1.0",
   "project": "agent-protocols",
-  "repository": "https://github.com/grokify/agent-protocols",
+  "repository": "https://github.com/aistandardsio/agent-protocols",
   "versioning": "semver",
   "commitConvention": "conventional",
   "maintainers": ["grokify"],
