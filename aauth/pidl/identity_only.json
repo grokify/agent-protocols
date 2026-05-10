@@ -1,0 +1,107 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grokify/pidl/main/schema/pidl.schema.json",
+  "protocol": {
+    "id": "aauth-identity-only",
+    "name": "AAuth Identity-Only Flow",
+    "version": "1.0",
+    "description": "AAuth identity-only flow where agents present their identity directly to resources without requiring auth tokens",
+    "category": "auth",
+    "references": [
+      {
+        "name": "AAuth Protocol Draft",
+        "url": "https://datatracker.ietf.org/doc/draft-hardt-oauth-aauth-protocol/"
+      },
+      {
+        "name": "RFC 9421 HTTP Message Signatures",
+        "url": "https://datatracker.ietf.org/doc/html/rfc9421"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "id": "agent",
+      "name": "Agent",
+      "type": "agent",
+      "description": "AI agent with cryptographic identity (aauth:local@domain)"
+    },
+    {
+      "id": "resource",
+      "name": "Resource Server",
+      "type": "resource_server",
+      "description": "Server hosting protected resources, configured for identity-only mode"
+    },
+    {
+      "id": "agent_provider",
+      "name": "Agent Provider",
+      "type": "server",
+      "description": "Issues and manages agent identities, publishes JWKS"
+    }
+  ],
+  "phases": [
+    {
+      "id": "discovery",
+      "name": "Discovery",
+      "description": "Resource discovers agent's public key via Agent Provider"
+    },
+    {
+      "id": "request",
+      "name": "Signed Request",
+      "description": "Agent sends HTTP message signature to resource"
+    },
+    {
+      "id": "verification",
+      "name": "Verification",
+      "description": "Resource verifies agent identity"
+    }
+  ],
+  "flows": [
+    {
+      "from": "agent",
+      "to": "resource",
+      "action": "signed_request",
+      "label": "HTTP Request + Signature + Signature-Key headers",
+      "mode": "request",
+      "phase": "request",
+      "annotations": [
+        {
+          "type": "security",
+          "text": "Signature covers method, path, headers per RFC 9421"
+        }
+      ]
+    },
+    {
+      "from": "resource",
+      "to": "agent_provider",
+      "action": "fetch_jwks",
+      "label": "GET /.well-known/aauth-agent.json + JWKS",
+      "mode": "request",
+      "phase": "discovery",
+      "condition": "key_not_cached"
+    },
+    {
+      "from": "agent_provider",
+      "to": "resource",
+      "action": "jwks_response",
+      "label": "Agent Provider Metadata + JWKS",
+      "mode": "response",
+      "phase": "discovery",
+      "condition": "key_not_cached"
+    },
+    {
+      "from": "resource",
+      "to": "resource",
+      "action": "verify_signature",
+      "label": "Verify HTTP signature using agent's public key",
+      "mode": "request",
+      "phase": "verification"
+    },
+    {
+      "from": "resource",
+      "to": "agent",
+      "action": "resource_response",
+      "label": "Protected Resource",
+      "mode": "response",
+      "phase": "verification"
+    }
+  ]
+}

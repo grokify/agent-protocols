@@ -1,0 +1,198 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grokify/pidl/main/schema/pidl.schema.json",
+  "protocol": {
+    "id": "aauth-federated",
+    "name": "AAuth Federated Delegation Flow",
+    "version": "1.0",
+    "description": "AAuth federated flow with human-to-agent delegation across organizational boundaries",
+    "category": "auth",
+    "references": [
+      {
+        "name": "AAuth Protocol Draft",
+        "url": "https://datatracker.ietf.org/doc/draft-hardt-oauth-aauth-protocol/"
+      },
+      {
+        "name": "RFC 8693 Token Exchange",
+        "url": "https://datatracker.ietf.org/doc/html/rfc8693"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "id": "human",
+      "name": "Human Principal",
+      "type": "user",
+      "description": "Human who authorizes the agent to act on their behalf"
+    },
+    {
+      "id": "agent",
+      "name": "Agent",
+      "type": "agent",
+      "description": "AI agent acting on behalf of human principal"
+    },
+    {
+      "id": "agent_provider",
+      "name": "Agent Provider",
+      "type": "server",
+      "description": "Issues and manages agent identity, may be separate from human's org"
+    },
+    {
+      "id": "person_server",
+      "name": "Person Server",
+      "type": "authorization_server",
+      "description": "Human's authorization server that issues delegation tokens"
+    },
+    {
+      "id": "resource",
+      "name": "Resource Server",
+      "type": "resource_server",
+      "description": "Server in a different organization hosting protected resources"
+    },
+    {
+      "id": "resource_ps",
+      "name": "Resource Person Server",
+      "type": "authorization_server",
+      "description": "Resource organization's Person Server that validates delegations"
+    }
+  ],
+  "phases": [
+    {
+      "id": "delegation",
+      "name": "Human Delegation",
+      "description": "Human authorizes agent for specific scopes and resources"
+    },
+    {
+      "id": "discovery",
+      "name": "Discovery",
+      "description": "Agent discovers resource and its Person Server"
+    },
+    {
+      "id": "federation",
+      "name": "Federation",
+      "description": "Agent exchanges delegation for federated auth token"
+    },
+    {
+      "id": "access",
+      "name": "Resource Access",
+      "description": "Agent accesses resource with federated auth token"
+    }
+  ],
+  "flows": [
+    {
+      "from": "human",
+      "to": "person_server",
+      "action": "authorize_agent",
+      "label": "Authorize agent for resources + scopes",
+      "mode": "interactive",
+      "phase": "delegation"
+    },
+    {
+      "from": "person_server",
+      "to": "person_server",
+      "action": "store_delegation",
+      "label": "Store delegation (agent JKT, resources, scopes, expiry)",
+      "mode": "request",
+      "phase": "delegation"
+    },
+    {
+      "from": "person_server",
+      "to": "human",
+      "action": "confirm_delegation",
+      "label": "Delegation Confirmed",
+      "mode": "response",
+      "phase": "delegation"
+    },
+    {
+      "from": "agent",
+      "to": "resource",
+      "action": "discover_resource",
+      "label": "GET /.well-known/aauth-resource.json",
+      "mode": "request",
+      "phase": "discovery"
+    },
+    {
+      "from": "resource",
+      "to": "agent",
+      "action": "resource_metadata",
+      "label": "Resource Metadata (person_server_uri)",
+      "mode": "response",
+      "phase": "discovery"
+    },
+    {
+      "from": "agent",
+      "to": "person_server",
+      "action": "request_delegation_token",
+      "label": "POST /token (request delegation token for resource)",
+      "mode": "request",
+      "phase": "federation",
+      "annotations": [
+        {
+          "type": "info",
+          "text": "Agent authenticates via HTTP signature"
+        }
+      ]
+    },
+    {
+      "from": "person_server",
+      "to": "agent",
+      "action": "delegation_token",
+      "label": "Delegation Token (signed by human's PS)",
+      "mode": "response",
+      "phase": "federation"
+    },
+    {
+      "from": "agent",
+      "to": "resource_ps",
+      "action": "federated_exchange",
+      "label": "POST /token (subject_token=delegation_token, actor_token=agent_identity)",
+      "mode": "request",
+      "phase": "federation",
+      "annotations": [
+        {
+          "type": "security",
+          "text": "Resource PS validates delegation token signature against human's PS JWKS"
+        }
+      ]
+    },
+    {
+      "from": "resource_ps",
+      "to": "resource_ps",
+      "action": "validate_delegation",
+      "label": "Validate delegation + verify agent identity + check scopes",
+      "mode": "request",
+      "phase": "federation"
+    },
+    {
+      "from": "resource_ps",
+      "to": "agent",
+      "action": "auth_token",
+      "label": "Auth Token (valid for resource organization)",
+      "mode": "response",
+      "phase": "federation"
+    },
+    {
+      "from": "agent",
+      "to": "resource",
+      "action": "api_request",
+      "label": "HTTP Request + Signature + Authorization: Bearer <auth_token>",
+      "mode": "request",
+      "phase": "access"
+    },
+    {
+      "from": "resource",
+      "to": "resource",
+      "action": "verify_auth",
+      "label": "Verify signature + auth token from own PS",
+      "mode": "request",
+      "phase": "access"
+    },
+    {
+      "from": "resource",
+      "to": "agent",
+      "action": "api_response",
+      "label": "Protected Resource",
+      "mode": "response",
+      "phase": "access"
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grokify/pidl/main/schema/pidl.schema.json",
+  "protocol": {
+    "id": "aauth-ps-asserted",
+    "name": "AAuth PS-Asserted Flow",
+    "version": "1.0",
+    "description": "AAuth PS-asserted flow where agents obtain auth tokens proactively before accessing resources",
+    "category": "auth",
+    "references": [
+      {
+        "name": "AAuth Protocol Draft",
+        "url": "https://datatracker.ietf.org/doc/draft-hardt-oauth-aauth-protocol/"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "id": "agent",
+      "name": "Agent",
+      "type": "agent",
+      "description": "AI agent with cryptographic identity"
+    },
+    {
+      "id": "person_server",
+      "name": "Person Server",
+      "type": "authorization_server",
+      "description": "Issues auth tokens on behalf of the human principal"
+    },
+    {
+      "id": "resource",
+      "name": "Resource Server",
+      "type": "resource_server",
+      "description": "Server hosting protected resources"
+    }
+  ],
+  "phases": [
+    {
+      "id": "discovery",
+      "name": "Discovery",
+      "description": "Agent discovers resource metadata and Person Server"
+    },
+    {
+      "id": "token_request",
+      "name": "Token Request",
+      "description": "Agent requests auth token from Person Server"
+    },
+    {
+      "id": "resource_access",
+      "name": "Resource Access",
+      "description": "Agent accesses resource with auth token"
+    }
+  ],
+  "flows": [
+    {
+      "from": "agent",
+      "to": "resource",
+      "action": "discover_resource",
+      "label": "GET /.well-known/aauth-resource.json",
+      "mode": "request",
+      "phase": "discovery"
+    },
+    {
+      "from": "resource",
+      "to": "agent",
+      "action": "resource_metadata",
+      "label": "Resource Metadata (person_server_uri, scopes)",
+      "mode": "response",
+      "phase": "discovery"
+    },
+    {
+      "from": "agent",
+      "to": "person_server",
+      "action": "discover_ps",
+      "label": "GET /.well-known/aauth-person.json",
+      "mode": "request",
+      "phase": "discovery"
+    },
+    {
+      "from": "person_server",
+      "to": "agent",
+      "action": "ps_metadata",
+      "label": "Person Server Metadata (token_endpoint)",
+      "mode": "response",
+      "phase": "discovery"
+    },
+    {
+      "from": "agent",
+      "to": "person_server",
+      "action": "token_request",
+      "label": "POST /token (grant_type=token-exchange, resource=..., scope=...)",
+      "mode": "request",
+      "phase": "token_request",
+      "annotations": [
+        {
+          "type": "info",
+          "text": "Agent identifies itself via HTTP signature"
+        }
+      ]
+    },
+    {
+      "from": "person_server",
+      "to": "person_server",
+      "action": "verify_authorization",
+      "label": "Verify agent is authorized for resource + scope",
+      "mode": "request",
+      "phase": "token_request"
+    },
+    {
+      "from": "person_server",
+      "to": "agent",
+      "action": "auth_token",
+      "label": "Auth Token (aa-auth+jwt)",
+      "mode": "response",
+      "phase": "token_request"
+    },
+    {
+      "from": "agent",
+      "to": "resource",
+      "action": "api_request",
+      "label": "HTTP Request + Signature + Authorization: Bearer <auth_token>",
+      "mode": "request",
+      "phase": "resource_access"
+    },
+    {
+      "from": "resource",
+      "to": "resource",
+      "action": "verify_auth",
+      "label": "Verify signature + auth token",
+      "mode": "request",
+      "phase": "resource_access"
+    },
+    {
+      "from": "resource",
+      "to": "agent",
+      "action": "api_response",
+      "label": "Protected Resource",
+      "mode": "response",
+      "phase": "resource_access"
+    }
+  ]
+}
