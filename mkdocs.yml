@@ -56,6 +56,12 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - AAuth:
+    - Overview: aauth/overview.md
+    - Getting Started: aauth/getting-started.md
+    - Examples: aauth/examples.md
+    - Diagrams: aauth/diagrams.md
+    - API Reference: aauth/api-reference.md
   - ID-JAG:
     - Overview: idjag/protocol-overview.md
     - Getting Started: idjag/getting-started.md

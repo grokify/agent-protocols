@@ -13,6 +13,16 @@ This repository provides Go libraries for emerging AI agent authentication and a
 
 <div class="grid cards" markdown>
 
+-   :material-robot:{ .lg .middle } **AAuth**
+
+    ---
+
+    Agent Authentication using HTTP message signatures and token exchange.
+
+    Best for: AI agent identity, cryptographic authentication, human delegation.
+
+    [:octicons-arrow-right-24: Learn more](aauth/overview.md)
+
 -   :material-key-chain:{ .lg .middle } **ID-JAG**
 
     ---
@@ -37,15 +47,15 @@ This repository provides Go libraries for emerging AI agent authentication and a
 
 ## Choosing a Protocol
 
-| Aspect | ID-JAG | AIMS |
-|--------|--------|------|
-| **Type** | Protocol (specific flow) | Framework (composable standards) |
-| **Identity Model** | OAuth JWT assertions | SPIFFE IDs |
-| **Credential Format** | Signed JWT assertions | X.509 SVIDs, JWT-SVIDs, WITs |
-| **Authentication** | Token exchange (RFC 8693) | mTLS or WIT/WPT |
-| **Delegation** | `act` claim for human-to-agent | SPIFFE path conventions |
-| **Best For** | OAuth 2.0 environments | Kubernetes/cloud-native |
-| **Standards** | RFC 8693, RFC 7523 | SPIFFE, WIMSE |
+| Aspect | AAuth | ID-JAG | AIMS |
+|--------|-------|--------|------|
+| **Type** | Protocol | Protocol | Framework |
+| **Identity Model** | AAuth IDs | OAuth JWT assertions | SPIFFE IDs |
+| **Credential Format** | aa-agent+jwt, aa-auth+jwt | Signed JWT assertions | X.509 SVIDs, JWT-SVIDs, WITs |
+| **Authentication** | HTTP signatures + tokens | Token exchange (RFC 8693) | mTLS or WIT/WPT |
+| **Delegation** | Person Server + cnf | `act` claim | SPIFFE path conventions |
+| **Best For** | AI agent identity | OAuth 2.0 environments | Kubernetes/cloud-native |
+| **Standards** | RFC 9421, RFC 8693 | RFC 8693, RFC 7523 | SPIFFE, WIMSE |
 
 ## Installation
 
@@ -54,6 +64,24 @@ go get github.com/aistandardsio/agent-protocols
 ```
 
 ## Quick Examples
+
+=== "AAuth"
+
+    ```go
+    import "github.com/aistandardsio/agent-protocols/aauth"
+
+    // Create agent with cryptographic identity
+    agentID, _ := aauth.NewAAuthID("calendar-bot", "example.com")
+    agent, _ := aauth.NewAgent(agentID, privateKey,
+        aauth.WithAgentProviderURL("https://agents.example.com"))
+
+    // Create signed HTTP request
+    req, _ := agent.SignedRequest(ctx, "GET", "https://api.example.com/events", nil)
+
+    // Or use automatic signing transport
+    client := &http.Client{Transport: agent.Transport(nil)}
+    resp, _ := client.Get("https://api.example.com/events")
+    ```
 
 === "ID-JAG"
 
@@ -92,6 +120,14 @@ go get github.com/aistandardsio/agent-protocols
 
 ## Documentation
 
+### AAuth
+
+- [Overview](aauth/overview.md) - AAuth protocol introduction
+- [Getting Started](aauth/getting-started.md) - Installation and first steps
+- [Examples](aauth/examples.md) - Running the demo applications
+- [Diagrams](aauth/diagrams.md) - Sequence and architecture diagrams
+- [API Reference](aauth/api-reference.md) - Go package documentation
+
 ### ID-JAG
 
 - [Protocol Overview](idjag/protocol-overview.md) - How ID-JAG works
@@ -113,6 +149,13 @@ go get github.com/aistandardsio/agent-protocols
 - [v0.1.0](releases/v0.1.0.md) - Initial release (2026-04-19)
 
 ## Related Specifications
+
+### AAuth
+
+- [draft-hardt-oauth-aauth-protocol](https://datatracker.ietf.org/doc/draft-hardt-oauth-aauth-protocol/) - AAuth Protocol specification
+- [RFC 9421](https://www.rfc-editor.org/rfc/rfc9421) - HTTP Message Signatures
+- [RFC 8693](https://tools.ietf.org/html/rfc8693) - OAuth 2.0 Token Exchange
+- [RFC 7800](https://www.rfc-editor.org/rfc/rfc7800) - Proof-of-Possession Key Semantics
 
 ### ID-JAG
 
