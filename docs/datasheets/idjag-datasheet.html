@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<!-- Theme: Add class="theme-dark" to <html> for dark mode -->
+<html lang="en" class="theme-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ID-JAG Protocol Data Sheet</title>
+  <style>
+    /* ============================================
+       CSS Custom Properties (Theme)
+       ============================================ */
+    :root {
+      /* Typography */
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
+      /* Spacing */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+    }
+
+    /* ============================================
+       Light Theme (Default)
+       ============================================ */
+    :root, .theme-light {
+      --color-primary: #1a365d;
+      --color-secondary: #2c5282;
+      --color-accent: #3182ce;
+      --color-success: #276749;
+      --color-warning: #c05621;
+      --color-danger: #c53030;
+      --color-light: #f7fafc;
+      --color-muted: #718096;
+      --color-border: #e2e8f0;
+
+      --color-bg: #ffffff;
+      --color-text: #1a202c;
+      --color-text-secondary: #4a5568;
+      --color-code-bg: #1a202c;
+      --color-code-text: #e2e8f0;
+
+      --color-problem-bg: #fff5f5;
+      --color-solution-bg: #f0fff4;
+      --color-header-border: var(--color-primary);
+    }
+
+    /* ============================================
+       Dark Theme
+       ============================================ */
+    .theme-dark {
+      --color-primary: #63b3ed;
+      --color-secondary: #90cdf4;
+      --color-accent: #4299e1;
+      --color-success: #68d391;
+      --color-warning: #f6ad55;
+      --color-danger: #fc8181;
+      --color-light: #2d3748;
+      --color-muted: #a0aec0;
+      --color-border: #4a5568;
+
+      --color-bg: #1a202c;
+      --color-text: #e2e8f0;
+      --color-text-secondary: #cbd5e0;
+      --color-code-bg: #0d1117;
+      --color-code-text: #e2e8f0;
+
+      --color-problem-bg: #3c1f1f;
+      --color-solution-bg: #1c3a2a;
+      --color-header-border: var(--color-accent);
+    }
+
+    /* ============================================
+       Reset & Base
+       ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 10px; /* 1rem = 10px for easy calculation */
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 1.1rem;
+      line-height: 1.4;
+      color: var(--color-text);
+      background: var(--color-bg);
+    }
+
+    /* ============================================
+       Print Styles
+       ============================================ */
+    @page {
+      size: 8.5in 11in;
+      margin: 0.4in;
+    }
+
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        page-break-after: always;
+        page-break-inside: avoid;
+      }
+
+      .page:last-child {
+        page-break-after: auto;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+    }
+
+    /* ============================================
+       Page Layout
+       ============================================ */
+    .page {
+      width: 8.5in;
+      height: 11in;
+      padding: 0.4in;
+      margin: 0 auto;
+      background: var(--color-bg);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .page-1 {
+      grid-template-rows: auto auto auto auto auto auto auto;
+    }
+
+    .page-2 {
+      grid-template-rows: auto auto auto auto auto auto auto auto;
+      gap: var(--space-xs); /* Tighter gap for page 2 */
+      padding: 0.35in;
+    }
+
+    /* Screen preview spacing */
+    @media screen {
+      .page {
+        margin: 20px auto;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      }
+    }
+
+    /* ============================================
+       Header
+       ============================================ */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: var(--space-sm);
+      border-bottom: 3px solid var(--color-header-border);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .protocol-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.4rem;
+    }
+
+    .header-title h1 {
+      font-size: 2.2rem;
+      color: var(--color-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .header-title .tagline {
+      font-size: 1.1rem;
+      color: var(--color-muted);
+      margin-top: 2px;
+    }
+
+    .header-meta {
+      text-align: right;
+      font-size: 0.95rem;
+      color: var(--color-muted);
+    }
+
+    .header-meta .version {
+      font-weight: 600;
+      color: var(--color-secondary);
+    }
+
+    .header-meta .status {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--color-warning);
+      color: white;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* ============================================
+       Problem/Solution Section
+       ============================================ */
+    .problem-solution {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .problem, .solution {
+      padding: var(--space-md);
+      border-radius: 6px;
+    }
+
+    .problem {
+      background: var(--color-problem-bg);
+      border-left: 4px solid var(--color-danger);
+    }
+
+    .solution {
+      background: var(--color-solution-bg);
+      border-left: 4px solid var(--color-success);
+    }
+
+    .problem h2, .solution h2 {
+      font-size: 1.2rem;
+      margin-bottom: var(--space-xs);
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .problem h2 { color: var(--color-danger); }
+    .solution h2 { color: var(--color-success); }
+
+    .problem p, .solution p {
+      font-size: 1.05rem;
+    }
+
+    /* ============================================
+       Full-width Diagram
+       ============================================ */
+    .diagram-full {
+      background: var(--color-light);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .diagram-full h2 {
+      font-size: 1.15rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .diagram-full svg {
+      width: 100%;
+      height: auto;
+      max-height: 220px;
+    }
+
+    /* ============================================
+       Parties Row (horizontal)
+       ============================================ */
+    .parties-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-sm);
+    }
+
+    .parties-row h2 {
+      grid-column: 1 / -1;
+      font-size: 1.15rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .party-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: var(--space-sm);
+      background: var(--color-light);
+      border-radius: 6px;
+      border: 1px solid var(--color-border);
+    }
+
+    .party-card .party-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: var(--space-xs);
+      font-size: 1.4rem;
+    }
+
+    .party-card h3 {
+      font-size: 1.1rem;
+      color: var(--color-secondary);
+      margin-bottom: 2px;
+    }
+
+    .party-card p {
+      font-size: 1.0rem;
+      color: var(--color-muted);
+      line-height: 1.35;
+    }
+
+    /* ============================================
+       Token + Standards Row
+       ============================================ */
+    .token-standards-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      align-items: start;
+    }
+
+    /* ============================================
+       Diagram Section
+       ============================================ */
+    .diagram-section {
+      background: var(--color-light);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: var(--space-md);
+    }
+
+    .diagram-section h2 {
+      font-size: 1.15rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-sm);
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .diagram-section svg {
+      width: 100%;
+      height: auto;
+      max-height: 280px;
+    }
+
+    .sequence-diagram-svg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* ============================================
+       Parties Section
+       ============================================ */
+    .parties-section h2 {
+      font-size: 1.15rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-sm);
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .party {
+      display: flex;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+      padding: var(--space-sm);
+      background: var(--color-light);
+      border-radius: 4px;
+    }
+
+    .party-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .party-icon.human { background: #e9d8fd; }
+    .party-icon.agent { background: #bee3f8; }
+    .party-icon.server { background: #c6f6d5; }
+
+    .party-info h3 {
+      font-size: 1rem;
+      color: var(--color-secondary);
+    }
+
+    .party-info p {
+      font-size: 0.95rem;
+      color: var(--color-muted);
+    }
+
+    /* ============================================
+       Token Format Section
+       ============================================ */
+    .token-section {
+      background: var(--color-light);
+      border-radius: 6px;
+      padding: var(--space-sm) var(--space-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .token-section h2 {
+      font-size: 1.15rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .jwt-structure {
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      line-height: 1.4;
+      background: var(--color-code-bg);
+      color: var(--color-code-text);
+      padding: var(--space-sm);
+      border-radius: 4px;
+      overflow: hidden;
+      white-space: pre;
+    }
+
+    .jwt-structure .claim-key {
+      color: #90cdf4;
+    }
+
+    .jwt-structure .claim-value {
+      color: #9ae6b4;
+    }
+
+    .jwt-structure .claim-special {
+      color: #fbd38d;
+    }
+
+    /* ============================================
+       Use Cases Section
+       ============================================ */
+    .use-cases {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-sm);
+    }
+
+    .use-cases h2 {
+      grid-column: 1 / -1;
+      font-size: 1.15rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .use-case {
+      padding: var(--space-sm);
+      background: var(--color-light);
+      border-radius: 4px;
+      border-left: 3px solid var(--color-accent);
+    }
+
+    .use-case h3 {
+      font-size: 1.1rem;
+      color: var(--color-secondary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .use-case p {
+      font-size: 1.05rem;
+      color: var(--color-muted);
+    }
+
+    /* ============================================
+       Standards Box (Vertical)
+       ============================================ */
+    .standards-box {
+      background: var(--color-light);
+      border-radius: 6px;
+      padding: var(--space-sm) var(--space-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .standards-box h2 {
+      font-size: 1.15rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .standards-list-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .standard-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-xs) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .standard-item:last-child {
+      border-bottom: none;
+    }
+
+    .standard-id {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-secondary);
+      background: var(--color-bg);
+      padding: 2px 8px;
+      border-radius: 3px;
+      border: 1px solid var(--color-border);
+    }
+
+    .standard-name {
+      font-size: 1.0rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* ============================================
+       Page 2: Security Risks Table
+       ============================================ */
+    .risks-section h2 {
+      font-size: 1.15rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-xs);
+      padding-bottom: var(--space-xs);
+      border-bottom: 2px solid var(--color-primary);
+    }
+
+    .risks-intro {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      margin-bottom: var(--space-sm);
+    }
+
+    .risks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-sm);
+    }
+
+    .risk-category {
+      background: var(--color-light);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .risk-category-header {
+      padding: var(--space-xs) var(--space-sm);
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .risk-category.attack .risk-category-header { background: #c53030; }
+    .risk-category.atlas .risk-category-header { background: #805ad5; }
+    .risk-category.cwe .risk-category-header { background: #2b6cb0; }
+
+    .risk-list {
+      padding: var(--space-xs) var(--space-sm);
+    }
+
+    .risk-item {
+      padding: 2px 0;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.85rem;
+    }
+
+    .risk-item:last-child {
+      border-bottom: none;
+    }
+
+    .risk-id {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-secondary);
+    }
+
+    .risk-name {
+      display: inline;
+      color: var(--color-text);
+      margin-left: 4px;
+    }
+
+    .risk-desc {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      display: block;
+    }
+
+    /* ============================================
+       NIST & Incidents Section
+       ============================================ */
+    .nist-incidents-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+
+    .nist-box, .incidents-box {
+      padding: var(--space-xs) var(--space-sm);
+      background: var(--color-light);
+      border-radius: 4px;
+      border: 1px solid var(--color-border);
+    }
+
+    .nist-box h3, .incidents-box h3 {
+      font-size: 0.95rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-xs);
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .nist-item, .incident-item {
+      padding: 2px 0;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.85rem;
+    }
+
+    .nist-item:last-child, .incident-item:last-child {
+      border-bottom: none;
+    }
+
+    .nist-id {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-accent);
+    }
+
+    .nist-name {
+      color: var(--color-text);
+      margin-left: 4px;
+    }
+
+    .nist-desc {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      display: block;
+    }
+
+    .incident-name {
+      font-weight: 600;
+      color: var(--color-text);
+      font-size: 0.85rem;
+    }
+
+    .incident-detail {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+    }
+
+    .incident-link {
+      font-size: 0.72rem;
+      color: var(--color-accent);
+    }
+
+    /* ============================================
+       Compliance Section
+       ============================================ */
+    .compliance-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+
+    .compliance-box {
+      padding: var(--space-xs) var(--space-sm);
+      background: var(--color-light);
+      border-radius: 4px;
+    }
+
+    .compliance-box h3 {
+      font-size: 0.95rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-xs);
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .compliance-list {
+      list-style: none;
+    }
+
+    .compliance-list li {
+      padding: 1px 0;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-xs);
+    }
+
+    .compliance-list li::before {
+      content: "✓";
+      color: var(--color-success);
+      font-weight: bold;
+    }
+
+    /* ============================================
+       Implementation Section
+       ============================================ */
+    .implementation-section h2 {
+      font-size: 1rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .code-block {
+      background: var(--color-code-bg);
+      color: var(--color-code-text);
+      padding: var(--space-sm);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.35;
+      overflow: hidden;
+      white-space: pre;
+    }
+
+    .code-block .comment {
+      color: #718096;
+    }
+
+    .code-block .keyword {
+      color: #f687b3;
+    }
+
+    .code-block .string {
+      color: #9ae6b4;
+    }
+
+    .code-block .function {
+      color: #90cdf4;
+    }
+
+    /* ============================================
+       Operations Section
+       ============================================ */
+    .operations-section {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-sm);
+    }
+
+    .operation-box {
+      padding: var(--space-xs) var(--space-sm);
+      background: var(--color-light);
+      border-radius: 4px;
+    }
+
+    .operation-box h3 {
+      font-size: 0.9rem;
+      color: var(--color-secondary);
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .operation-box ul {
+      list-style: none;
+      font-size: 0.82rem;
+    }
+
+    .operation-box li {
+      padding: 1px 0;
+      color: var(--color-text-secondary);
+    }
+
+    /* ============================================
+       Resources Section
+       ============================================ */
+    .resources-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--color-primary);
+      color: white;
+      border-radius: 4px;
+    }
+
+    .resources-links {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .resource-link {
+      text-align: center;
+    }
+
+    .resource-link a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+
+    .resource-link a:hover {
+      text-decoration: underline;
+    }
+
+    .resource-link .label {
+      font-size: 0.75rem;
+      opacity: 0.8;
+    }
+
+    .qr-code {
+      width: 55px;
+      height: 55px;
+      background: white;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: var(--color-muted);
+    }
+
+    /* ============================================
+       Footer
+       ============================================ */
+    .footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      padding-top: var(--space-xs);
+      border-top: 1px solid var(--color-border);
+    }
+
+    /* ============================================
+       Theme Toggle (Screen Only)
+       ============================================ */
+    .theme-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      background: var(--color-primary);
+      color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .theme-toggle:hover {
+      opacity: 0.9;
+    }
+
+    @media print {
+      .theme-toggle {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme toggle button (screen only, hidden when printing) -->
+  <button class="theme-toggle no-print" onclick="toggleTheme()">Toggle Theme</button>
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      if (html.classList.contains('theme-dark')) {
+        html.classList.remove('theme-dark');
+        html.classList.add('theme-light');
+      } else {
+        html.classList.remove('theme-light');
+        html.classList.add('theme-dark');
+      }
+    }
+  </script>
+
+  <!-- ==================== PAGE 1 ==================== -->
+  <div class="page page-1">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <div class="protocol-icon">ID</div>
+        <div class="header-title">
+          <h1>ID-JAG Protocol</h1>
+          <div class="tagline">Identity Assertion JWT Authorization Grant for Agent Authentication</div>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div class="version">draft-ietf-oauth-identity-assertion-authz-grant</div>
+        <div><span class="status">EXPERIMENTAL</span></div>
+      </div>
+    </header>
+
+    <!-- Problem / Solution -->
+    <section class="problem-solution">
+      <div class="problem">
+        <h2>⚠ The Problem</h2>
+        <p>When AI agents act on behalf of users, existing OAuth grants (client credentials, JWT bearer) don't capture <em>which agent</em> acted for <em>which user</em>. Without this, audit logs can't distinguish user actions from agent actions, delegation chains are invisible, and accountability is lost.</p>
+      </div>
+      <div class="solution">
+        <h2>✓ The Solution</h2>
+        <p>ID-JAG enables secure agent authentication through JWT assertions with delegation chains. The <code>act</code> claim creates an auditable trail showing exactly which agent acted on behalf of which user, integrating seamlessly with existing OAuth 2.0 infrastructure.</p>
+      </div>
+    </section>
+
+    <!-- Use Cases (moved above diagram) -->
+    <section class="use-cases">
+      <h2>Primary Use Cases</h2>
+
+      <div class="use-case">
+        <h3>🗓 Calendar Management</h3>
+        <p>Agent schedules meetings on behalf of user with full audit trail</p>
+      </div>
+
+      <div class="use-case">
+        <h3>📧 Email Processing</h3>
+        <p>Agent reads and responds to emails with delegated access</p>
+      </div>
+
+      <div class="use-case">
+        <h3>🔗 Multi-Agent Chains</h3>
+        <p>Nested <code>act</code> claims track delegation: User → Agent₁ → Agent₂</p>
+      </div>
+    </section>
+
+    <!-- Sequence Diagram (Full Width) -->
+    <section class="diagram-full">
+      <h2>Protocol Flow (Delegation Mode)</h2>
+      <!-- Generated from idjag-sequence.mmd using: mmdc -i idjag-sequence.mmd -o idjag-sequence.svg -->
+      <svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" class="sequence-svg">
+        <style>
+          /* Light theme (default) */
+          .sequence-svg .participant-box { fill: #1a365d; }
+          .sequence-svg .participant-text { fill: white; font-family: -apple-system, sans-serif; font-size: 12px; font-weight: 600; }
+          .sequence-svg .lifeline { stroke: #cbd5e0; stroke-width: 1; stroke-dasharray: 4,4; }
+          .sequence-svg .message-line { stroke: #3182ce; stroke-width: 1.5; }
+          .sequence-svg .message-line-dashed { stroke: #3182ce; stroke-width: 1.5; stroke-dasharray: 6,3; }
+          .sequence-svg .message-arrow { fill: #3182ce; }
+          .sequence-svg .message-text { fill: #2d3748; font-family: -apple-system, sans-serif; font-size: 10px; }
+          .sequence-svg .message-text-muted { fill: #718096; }
+          .sequence-svg .trust-boundary { fill: rgba(192, 86, 33, 0.08); stroke: #c05621; stroke-width: 2; stroke-dasharray: 8,4; }
+          .sequence-svg .trust-label { fill: #c05621; font-family: -apple-system, sans-serif; font-size: 9px; font-weight: 600; }
+          .sequence-svg .step-number { fill: white; font-family: -apple-system, sans-serif; font-size: 9px; font-weight: bold; }
+          .sequence-svg .step-circle { fill: #3182ce; }
+
+          /* Dark theme overrides */
+          .theme-dark .sequence-svg .participant-box { fill: #4299e1; }
+          .theme-dark .sequence-svg .lifeline { stroke: #4a5568; }
+          .theme-dark .sequence-svg .message-line { stroke: #63b3ed; }
+          .theme-dark .sequence-svg .message-line-dashed { stroke: #63b3ed; }
+          .theme-dark .sequence-svg .message-arrow { fill: #63b3ed; }
+          .theme-dark .sequence-svg .message-text { fill: #e2e8f0; }
+          .theme-dark .sequence-svg .message-text-muted { fill: #a0aec0; }
+          .theme-dark .sequence-svg .trust-boundary { fill: rgba(246, 173, 85, 0.15); stroke: #f6ad55; }
+          .theme-dark .sequence-svg .trust-label { fill: #f6ad55; }
+          .theme-dark .sequence-svg .step-circle { fill: #4299e1; }
+        </style>
+
+        <!-- Participant boxes -->
+        <rect class="participant-box" x="30" y="5" width="90" height="24" rx="4"/>
+        <text class="participant-text" x="75" y="21" text-anchor="middle">Human User</text>
+
+        <rect class="participant-box" x="200" y="5" width="90" height="24" rx="4"/>
+        <text class="participant-text" x="245" y="21" text-anchor="middle">Agent</text>
+
+        <rect class="participant-box" x="380" y="5" width="90" height="24" rx="4"/>
+        <text class="participant-text" x="425" y="21" text-anchor="middle">Auth Server</text>
+
+        <rect class="participant-box" x="560" y="5" width="90" height="24" rx="4"/>
+        <text class="participant-text" x="605" y="21" text-anchor="middle">Resource</text>
+
+        <!-- Lifelines -->
+        <line class="lifeline" x1="75" y1="29" x2="75" y2="270"/>
+        <line class="lifeline" x1="245" y1="29" x2="245" y2="270"/>
+        <line class="lifeline" x1="425" y1="29" x2="425" y2="270"/>
+        <line class="lifeline" x1="605" y1="29" x2="605" y2="270"/>
+
+        <!-- Step 1: Grant permission -->
+        <circle class="step-circle" cx="85" cy="48" r="7"/>
+        <text class="step-number" x="85" y="51" text-anchor="middle">1</text>
+        <line class="message-line" x1="75" y1="48" x2="235" y2="48"/>
+        <polygon class="message-arrow" points="235,48 228,44 228,52"/>
+        <text class="message-text" x="155" y="42">Grant permission</text>
+
+        <!-- Trust Boundary box around step 2 -->
+        <rect class="trust-boundary" x="195" y="60" width="100" height="42" rx="4"/>
+        <text class="trust-label" x="200" y="70">Trust Boundary</text>
+
+        <!-- Step 2: Create JWT Assertion -->
+        <circle class="step-circle" cx="255" cy="82" r="7"/>
+        <text class="step-number" x="255" y="85" text-anchor="middle">2</text>
+        <line class="message-line" x1="248" y1="82" x2="270" y2="82"/>
+        <line class="message-line" x1="270" y1="82" x2="270" y2="94"/>
+        <line class="message-line" x1="270" y1="94" x2="248" y2="94"/>
+        <polygon class="message-arrow" points="248,94 254,91 254,97"/>
+        <text class="message-text" x="278" y="86" font-size="9">Create JWT (sub=user, act=agent)</text>
+
+        <!-- Step 3: Token Exchange Request -->
+        <circle class="step-circle" cx="255" cy="120" r="7"/>
+        <text class="step-number" x="255" y="123" text-anchor="middle">3</text>
+        <line class="message-line" x1="245" y1="120" x2="415" y2="120"/>
+        <polygon class="message-arrow" points="415,120 408,116 408,124"/>
+        <text class="message-text" x="330" y="114">Token Exchange Request</text>
+        <text class="message-text" x="330" y="132" class="message-text-muted" font-size="9">grant_type=token-exchange, subject_token=JWT</text>
+
+        <!-- Step 4: Validate Assertion -->
+        <circle class="step-circle" cx="435" cy="155" r="7"/>
+        <text class="step-number" x="435" y="158" text-anchor="middle">4</text>
+        <line class="message-line" x1="428" y1="155" x2="450" y2="155"/>
+        <line class="message-line" x1="450" y1="155" x2="450" y2="170"/>
+        <line class="message-line" x1="450" y1="170" x2="428" y2="170"/>
+        <polygon class="message-arrow" points="428,170 434,167 434,173"/>
+        <text class="message-text" x="458" y="162">Validate assertion (verify sig, claims, actor)</text>
+
+        <!-- Step 5: Access Token -->
+        <circle class="step-circle" cx="415" cy="195" r="7"/>
+        <text class="step-number" x="415" y="198" text-anchor="middle">5</text>
+        <line class="message-line-dashed" x1="425" y1="195" x2="255" y2="195"/>
+        <polygon class="message-arrow" points="255,195 262,191 262,199"/>
+        <text class="message-text" x="340" y="189">Access Token (scoped, time-limited)</text>
+
+        <!-- Step 6: API Request -->
+        <circle class="step-circle" cx="255" cy="225" r="7"/>
+        <text class="step-number" x="255" y="228" text-anchor="middle">6</text>
+        <line class="message-line" x1="245" y1="225" x2="595" y2="225"/>
+        <polygon class="message-arrow" points="595,225 588,221 588,229"/>
+        <text class="message-text" x="420" y="219">API Request (Authorization: Bearer token)</text>
+
+        <!-- Step 7: Response -->
+        <circle class="step-circle" cx="595" cy="252" r="7"/>
+        <text class="step-number" x="595" y="255" text-anchor="middle">7</text>
+        <line class="message-line-dashed" x1="605" y1="252" x2="255" y2="252"/>
+        <polygon class="message-arrow" points="255,252 262,248 262,256"/>
+        <text class="message-text" x="430" y="246">Response</text>
+      </svg>
+    </section>
+
+    <!-- Protocol Parties (Horizontal Row) -->
+    <section class="parties-row">
+      <h2>Protocol Parties</h2>
+
+      <div class="party-card">
+        <div class="party-icon human">👤</div>
+        <h3>Human (Delegator)</h3>
+        <p>Grants agent permission to act on their behalf</p>
+      </div>
+
+      <div class="party-card">
+        <div class="party-icon agent">🤖</div>
+        <h3>Agent (Actor)</h3>
+        <p>Authenticates and performs actions; identified in <code>act</code> claim</p>
+      </div>
+
+      <div class="party-card">
+        <div class="party-icon server">🔐</div>
+        <h3>Authorization Server</h3>
+        <p>Validates assertions, enforces policy, issues tokens</p>
+      </div>
+
+      <div class="party-card">
+        <div class="party-icon server">📡</div>
+        <h3>Resource Server</h3>
+        <p>Protected API that accepts tokens and serves requests</p>
+      </div>
+    </section>
+
+    <!-- Token Structure + Standards Row -->
+    <section class="token-standards-row">
+      <div class="token-section">
+        <h2>JWT Assertion Structure</h2>
+        <div class="jwt-structure">
+{
+  <span class="claim-key">"iss"</span>: <span class="claim-value">"https://agent.example.com"</span>,
+  <span class="claim-key">"sub"</span>: <span class="claim-value">"user@example.com"</span>,
+  <span class="claim-key">"aud"</span>: <span class="claim-value">"https://auth.example.com"</span>,
+  <span class="claim-key">"exp"</span>: <span class="claim-value">1699900000</span>,
+  <span class="claim-key">"iat"</span>: <span class="claim-value">1699896400</span>,
+  <span class="claim-special">"act"</span>: {
+    <span class="claim-key">"sub"</span>: <span class="claim-value">"agent-calendar-bot"</span>
+  }
+}
+        </div>
+      </div>
+
+      <div class="standards-box">
+        <h2>Built On Standards</h2>
+        <div class="standards-list-vertical">
+          <div class="standard-item">
+            <span class="standard-id">RFC 8693</span>
+            <span class="standard-name">OAuth 2.0 Token Exchange</span>
+          </div>
+          <div class="standard-item">
+            <span class="standard-id">RFC 7523</span>
+            <span class="standard-name">JWT Bearer Assertion</span>
+          </div>
+          <div class="standard-item">
+            <span class="standard-id">RFC 7519</span>
+            <span class="standard-name">JSON Web Token (JWT)</span>
+          </div>
+          <div class="standard-item">
+            <span class="standard-id">RFC 6749</span>
+            <span class="standard-name">OAuth 2.0 Framework</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==================== PAGE 2 ==================== -->
+  <div class="page page-2">
+
+    <!-- Header (compact for page 2) -->
+    <header class="header header-compact">
+      <div class="header-left">
+        <div class="protocol-icon" style="width:36px;height:36px;font-size:1.1rem;">ID</div>
+        <div class="header-title">
+          <h1 style="font-size:1.6rem;">ID-JAG Protocol</h1>
+          <div class="tagline" style="font-size:0.95rem;">Security Risks & Implementation Guide</div>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div style="font-size:0.85rem;">Page 2 of 2</div>
+      </div>
+    </header>
+
+    <!-- Security Risks -->
+    <section class="risks-section">
+      <h2>Security Risks Without ID-JAG</h2>
+      <p class="risks-intro">Without standardized agent authentication, systems are vulnerable to the following threats:</p>
+
+      <div class="risks-grid">
+
+        <!-- MITRE ATT&CK -->
+        <div class="risk-category attack">
+          <div class="risk-category-header">MITRE ATT&CK</div>
+          <div class="risk-list">
+            <div class="risk-item">
+              <span class="risk-id">T1078</span>
+              <span class="risk-name">Valid Accounts</span>
+              <span class="risk-desc">Agents using shared or stolen credentials</span>
+            </div>
+            <div class="risk-item">
+              <span class="risk-id">T1550</span>
+              <span class="risk-name">Use Alternate Auth Material</span>
+              <span class="risk-desc">Pass-the-token attacks with unscoped tokens</span>
+            </div>
+            <div class="risk-item">
+              <span class="risk-id">T1528</span>
+              <span class="risk-name">Steal Application Access Token</span>
+              <span class="risk-desc">Token theft from agent compromise</span>
+            </div>
+            <div class="risk-item">
+              <span class="risk-id">T1556</span>
+              <span class="risk-name">Modify Auth Process</span>
+              <span class="risk-desc">Injecting into non-standard auth flows</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MITRE ATLAS -->
+        <div class="risk-category atlas">
+          <div class="risk-category-header">MITRE ATLAS (AI-Specific)</div>
+          <div class="risk-list">
+            <div class="risk-item">
+              <span class="risk-id">AML.T0024</span>
+              <span class="risk-name">Exfiltration via ML API</span>
+              <span class="risk-desc">Unauthorized data access through agent</span>
+            </div>
+            <div class="risk-item">
+              <span class="risk-id">AML.T0048</span>
+              <span class="risk-name">AI Supply Chain</span>
+              <span class="risk-desc">Compromised agent in delegation chain</span>
+            </div>
+            <div class="risk-item">
+              <span class="risk-id">AML.T0051</span>
+              <span class="risk-name">LLM Prompt Injection</span>
+              <span class="risk-desc">Manipulating agent to exceed permissions</span>
+            </div>
+            <div class="risk-item">
+              <span class="risk-id">AML.T0044</span>
+              <span class="risk-name">Full ML Model Access</span>
+              <span class="risk-desc">Agent identity enables model extraction</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CWE -->
+        <div class="risk-category cwe">
+          <div class="risk-category-header">CWE (Weaknesses)</div>
+          <div class="risk-list">
+            <div class="risk-item">
+              <span class="risk-id">CWE-287</span>
+              <span class="risk-name">Improper Authentication</span>
+              <span class="risk-desc">Agent identity not properly verified</span>
+            </div>
+            <div class="risk-item">
+              <span class="risk-id">CWE-863</span>
+              <span class="risk-name">Incorrect Authorization</span>
+              <span class="risk-desc">Delegation scope not enforced</span>
+            </div>
+            <div class="risk-item">
+              <span class="risk-id">CWE-284</span>
+              <span class="risk-name">Improper Access Control</span>
+              <span class="risk-desc">No distinction between user and agent</span>
+            </div>
+            <div class="risk-item">
+              <span class="risk-id">CWE-778</span>
+              <span class="risk-name">Insufficient Logging</span>
+              <span class="risk-desc">Cannot audit agent actions</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- NIST AI RMF & Real-World Incidents -->
+    <section class="nist-incidents-section">
+      <div class="nist-box">
+        <h3>🏛 NIST AI Framework Alignment</h3>
+        <div class="nist-item">
+          <span class="nist-id">NCCoE</span>
+          <span class="nist-name">AI Agent Identity & Authorization</span>
+          <div class="nist-desc">Standards-based agent identity management</div>
+        </div>
+        <div class="nist-item">
+          <span class="nist-id">AI RMF</span>
+          <span class="nist-name">Govern 1.2, Map 3.4</span>
+          <div class="nist-desc">Accountability & third-party AI risks</div>
+        </div>
+        <div class="nist-item">
+          <span class="nist-id">CAISI</span>
+          <span class="nist-name">Agent Standards Initiative</span>
+          <div class="nist-desc">Least privilege, task-scoped access</div>
+        </div>
+        <div class="nist-item">
+          <span class="nist-id">SP 800-53</span>
+          <span class="nist-name">AC-2, AC-6, AU-3</span>
+          <div class="nist-desc">Account mgmt, least privilege, audit content</div>
+        </div>
+      </div>
+
+      <div class="incidents-box">
+        <h3>⚠ Real-World Agent Incidents</h3>
+        <div class="incident-item">
+          <span class="incident-name">Meta Rogue AI Agent (2024)</span>
+          <div class="incident-detail">Agent advice led to 2-hour data exposure; Sev 1 incident. No exploit—agent operated within auth scope but produced harmful outcome.</div>
+          <span class="incident-link">incidentdatabase.ai</span>
+        </div>
+        <div class="incident-item">
+          <span class="incident-name">Moltbook Credential Exposure</span>
+          <div class="incident-detail">506 prompt injections spread across 1.5M autonomous agents via exposed API keys and credentials.</div>
+          <span class="incident-link">agentsecdb.com</span>
+        </div>
+        <div class="incident-item">
+          <span class="incident-name">AgentSecDB: 32 Incidents</span>
+          <div class="incident-detail">Tracking agent CLI, copilot, and assistant failures including source leaks and injection attacks.</div>
+          <span class="incident-link">agentsecdb.com</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compliance & Audit -->
+    <section class="compliance-section">
+      <div class="compliance-box">
+        <h3>📋 Audit Trail Capabilities</h3>
+        <ul class="compliance-list">
+          <li>Every action traceable to specific agent via <code>act</code> claim</li>
+          <li>Delegation chain preserved in nested actor structure</li>
+          <li>Token issuance and usage logged at authorization server</li>
+          <li>Time-bounded tokens limit exposure window</li>
+        </ul>
+      </div>
+      <div class="compliance-box">
+        <h3>🏛 Compliance Framework Alignment</h3>
+        <ul class="compliance-list">
+          <li><strong>SOC 2:</strong> Logical access controls, audit logging</li>
+          <li><strong>ISO 27001:</strong> A.9 Access control requirements</li>
+          <li><strong>NIST AI RMF:</strong> Accountable AI governance</li>
+          <li><strong>GDPR:</strong> Art. 32 technical measures</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Implementation -->
+    <section class="implementation-section">
+      <h2>Quick Start Implementation (Go)</h2>
+      <div class="code-block">
+<span class="comment">// Create an assertion for agent acting on behalf of user</span>
+assertion := idjag.<span class="function">NewAssertion</span>(
+    idjag.<span class="function">WithSubject</span>(<span class="string">"user@example.com"</span>),
+    idjag.<span class="function">WithActor</span>(<span class="string">"calendar-agent"</span>),
+    idjag.<span class="function">WithAudience</span>(<span class="string">"https://auth.example.com"</span>),
+)
+
+<span class="comment">// Sign and exchange for access token</span>
+signedJWT, _ := assertion.<span class="function">Sign</span>(privateKey)
+token, _ := client.<span class="function">Exchange</span>(ctx, signedJWT, <span class="string">"calendar:read"</span>)
+      </div>
+    </section>
+
+    <!-- Operational Considerations -->
+    <section class="operations-section">
+      <div class="operation-box">
+        <h3>⚡ Performance</h3>
+        <ul>
+          <li>JWT ~500 bytes typical</li>
+          <li>Validation ~1ms with cached JWKS</li>
+          <li>Cache JWKS with 5-min TTL</li>
+        </ul>
+      </div>
+      <div class="operation-box">
+        <h3>🔄 Key Management</h3>
+        <ul>
+          <li>Rotate signing keys quarterly</li>
+          <li>JWKS endpoint for key distribution</li>
+          <li>Support multiple active keys</li>
+        </ul>
+      </div>
+      <div class="operation-box">
+        <h3>📊 Monitoring</h3>
+        <ul>
+          <li>Alert on assertion validation failures</li>
+          <li>Track tokens per agent identity</li>
+          <li>Log all delegation chains</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="resources-section">
+      <div class="resources-links">
+        <div class="resource-link">
+          <a href="https://github.com/aistandardsio/agent-protocols">
+            <div>📦 GitHub Repository</div>
+            <div class="label">aistandardsio/agent-protocols</div>
+          </a>
+        </div>
+        <div class="resource-link">
+          <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-identity-assertion-authz-grant/">
+            <div>📄 IETF Draft</div>
+            <div class="label">datatracker.ietf.org</div>
+          </a>
+        </div>
+        <div class="resource-link">
+          <a href="https://aistandardsio.github.io/agent-protocols/">
+            <div>📚 Documentation</div>
+            <div class="label">Full API Reference</div>
+          </a>
+        </div>
+      </div>
+      <div class="qr-code">
+        [QR Code]
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      ID-JAG Protocol Data Sheet v1.0 • License: MIT • Generated 2026-04
+    </footer>
+
+  </div>
+
+</body>
+</html>
