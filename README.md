@@ -50,6 +50,8 @@ This repository provides Go libraries for emerging agent-to-agent protocols:
 Production-ready integrations with identity infrastructure:
 
 - **[adapters/zitadel](./adapters/zitadel/)** - Integration with [Zitadel](https://zitadel.com/) OIDC for all three protocols
+- **[adapters/sharkauth](./adapters/sharkauth/)** - Integration with [SharkAuth](https://github.com/shark-auth/shark) for agent delegation with DPoP
+- **[adapters/ory](./adapters/ory/)** - Integration with [Ory Fosite](https://github.com/ory/fosite) and [Hydra](https://github.com/ory/hydra)
 
 ## Installation
 
@@ -137,12 +139,24 @@ go run ./adapters/zitadel/examples/aims   # AIMS WIT verification
 go run ./adapters/zitadel/examples/aauth  # AAuth agent authentication
 ```
 
+**SharkAuth Adapter:**
+```bash
+go run ./adapters/sharkauth/examples/aauth  # AAuth with delegation grants
+```
+
+**Ory Adapter:**
+```bash
+go run ./adapters/ory/examples/idjag  # ID-JAG with Hydra
+```
+
 ## Documentation
 
 - **AAuth**: [Overview](./docs/aauth/overview.md) | [Getting Started](./docs/aauth/getting-started.md) | [Examples](./docs/aauth/examples.md)
 - **ID-JAG**: [Protocol Overview](./docs/idjag/protocol-overview.md) | [Getting Started](./docs/idjag/getting-started.md)
 - **AIMS**: [Overview](./docs/aims/overview.md) | [Getting Started](./docs/aims/getting-started.md)
 - **Zitadel Adapter**: [Overview](./docs/adapters/zitadel/overview.md) | [Getting Started](./docs/adapters/zitadel/getting-started.md)
+- **SharkAuth Adapter**: [Overview](./docs/adapters/sharkauth/overview.md) | [Getting Started](./docs/adapters/sharkauth/getting-started.md)
+- **Ory Adapter**: [Overview](./docs/adapters/ory/overview.md) | [Getting Started](./docs/adapters/ory/getting-started.md)
 - [API Reference](https://pkg.go.dev/github.com/aistandardsio/agent-protocols)
 - [Changelog](./CHANGELOG.md)
 - [Full Documentation](https://aistandards.io/agent-protocols/)

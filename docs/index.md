@@ -132,6 +132,22 @@ Production-ready integrations with identity infrastructure.
 
     [:octicons-arrow-right-24: Learn more](adapters/zitadel/overview.md)
 
+-   :material-shark:{ .lg .middle } **SharkAuth**
+
+    ---
+
+    Agent delegation with `may_act_grants` and DPoP proof-of-possession.
+
+    [:octicons-arrow-right-24: Learn more](adapters/sharkauth/overview.md)
+
+-   :material-alpha-o-circle:{ .lg .middle } **Ory**
+
+    ---
+
+    Custom Fosite OAuth handlers and Hydra client integration.
+
+    [:octicons-arrow-right-24: Learn more](adapters/ory/overview.md)
+
 </div>
 
 ## Documentation
@@ -163,9 +179,12 @@ Production-ready integrations with identity infrastructure.
 ### Adapters
 
 - [Zitadel](adapters/zitadel/overview.md) - Integration with Zitadel OIDC infrastructure
+- [SharkAuth](adapters/sharkauth/overview.md) - Agent delegation with DPoP proof-of-possession
+- [Ory](adapters/ory/overview.md) - Fosite handlers and Hydra client for OAuth 2.0
 
 ### Releases
 
+- [v0.3.0](releases/v0.3.0.md) - SharkAuth and Ory adapters (2026-05-11)
 - [v0.2.0](releases/v0.2.0.md) - AAuth protocol, Zitadel adapter (2026-05-11)
 - [v0.1.0](releases/v0.1.0.md) - ID-JAG and AIMS protocols (2026-04-19)
 

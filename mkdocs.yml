@@ -87,7 +87,14 @@ nav:
       - Getting Started: adapters/zitadel/getting-started.md
       - Examples: adapters/zitadel/examples.md
       - API Reference: adapters/zitadel/api-reference.md
+    - SharkAuth:
+      - Overview: adapters/sharkauth/overview.md
+      - Getting Started: adapters/sharkauth/getting-started.md
+    - Ory:
+      - Overview: adapters/ory/overview.md
+      - Getting Started: adapters/ory/getting-started.md
   - Releases:
+    - v0.3.0: releases/v0.3.0.md
     - v0.2.0: releases/v0.2.0.md
     - v0.1.0: releases/v0.1.0.md
 
