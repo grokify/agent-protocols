@@ -6,6 +6,7 @@ repo_name: aistandardsio/agent-protocols
 
 theme:
   name: material
+  custom_dir: docs/overrides
   palette:
     # Dark mode first (AIStandards.io default)
     - scheme: slate
