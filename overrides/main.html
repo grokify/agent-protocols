@@ -2,27 +2,13 @@
 
 {% block header %}
 <!-- AIStandards.io Unified Navigation -->
-<style>
-  /* Hide Material theme header, show custom navbar */
-  .md-header {
-    display: none !important;
-  }
-  #ais-navbar-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-  }
-</style>
 <div id="ais-navbar-container"></div>
-<script type="module">
-  import 'https://aistandardsio.github.io/js/lit-navbar.js';
-
+<script src="https://aistandardsio.github.io/js/lit-navbar.js"></script>
+<script>
   // Create and configure navbar after component is loaded
-  customElements.whenDefined('lit-navbar').then(() => {
-    const container = document.getElementById('ais-navbar-container');
-    const navbar = document.createElement('lit-navbar');
+  customElements.whenDefined('lit-navbar').then(function() {
+    var container = document.getElementById('ais-navbar-container');
+    var navbar = document.createElement('lit-navbar');
     navbar.config = {
       baseUrl: 'https://aistandardsio.github.io',
       brand: {
