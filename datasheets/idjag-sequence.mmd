@@ -1,0 +1,23 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#1a365d', 'primaryTextColor': '#fff', 'primaryBorderColor': '#2c5282', 'lineColor': '#3182ce', 'secondaryColor': '#f7fafc', 'tertiaryColor': '#e2e8f0', 'noteBkgColor': '#fefcbf', 'noteTextColor': '#744210', 'actorBkg': '#1a365d', 'actorTextColor': '#fff', 'actorBorder': '#2c5282', 'signalColor': '#2d3748', 'signalTextColor': '#2d3748'}}}%%
+sequenceDiagram
+    participant H as Human User
+    participant A as Agent
+    participant AS as Auth Server
+    participant R as Resource Server
+
+    H->>A: 1. Grant permission
+
+    rect rgba(192, 86, 33, 0.1)
+        Note over A: Trust Boundary
+        A->>A: 2. Create JWT Assertion<br/>(sub=user, act=agent)
+    end
+
+    A->>AS: 3. Token Exchange Request<br/>grant_type=urn:ietf:params:oauth:grant-type:token-exchange<br/>subject_token=JWT
+
+    AS->>AS: 4. Validate Assertion<br/>Verify signature, claims, actor
+
+    AS-->>A: 5. Access Token<br/>(scoped, time-limited)
+
+    A->>R: 6. API Request<br/>Authorization: Bearer {token}
+
+    R-->>A: 7. Response

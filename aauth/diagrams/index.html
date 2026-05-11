@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://aistandardsio.github.io/agent-protocols/aims/overview/">
+        <link rel="canonical" href="https://aistandardsio.github.io/agent-protocols/aauth/diagrams/">
       
       
-        <link rel="prev" href="../../idjag/presentations/idjag-intro/">
+        <link rel="prev" href="../examples/">
       
       
-        <link rel="next" href="../getting-started/">
+        <link rel="next" href="../api-reference/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Overview - agent-protocols</title>
+        <title>Diagrams - agent-protocols</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aims-overview" class="md-skip">
+        <a href="#aauth-diagrams" class="md-skip">
           Skip to content
         </a>
       
@@ -183,7 +183,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Diagrams
             
           </span>
         </div>
@@ -312,11 +312,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../aauth/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
           
   
   
@@ -352,13 +354,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../aims/overview/" class="md-tabs__link">
           
   
   
@@ -491,28 +491,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -525,7 +528,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             AAuth
@@ -539,7 +542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../aauth/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -562,7 +565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../aauth/getting-started/" class="md-nav__link">
+      <a href="../getting-started/" class="md-nav__link">
         
   
   
@@ -585,7 +588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../aauth/examples/" class="md-nav__link">
+      <a href="../examples/" class="md-nav__link">
         
   
   
@@ -605,10 +608,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../aauth/diagrams/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Diagrams
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -619,6 +644,131 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identity-only-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identity-Only Flow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource-managed-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource-Managed Flow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ps-asserted-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      PS-Asserted Flow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#federated-delegation-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Federated Delegation Flow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#component-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#token-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jwt-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWT Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JWT Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identity-token-aa-agentjwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identity Token (aa-agent+jwt)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auth-token-aa-authjwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auth Token (aa-auth+jwt)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-token-aa-resourcejwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Token (aa-resource+jwt)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pidl-protocol-diagrams" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIDL Protocol Diagrams
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -631,7 +781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../aauth/api-reference/" class="md-nav__link">
+      <a href="../api-reference/" class="md-nav__link">
         
   
   
@@ -901,31 +1051,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -938,7 +1085,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             AIMS
@@ -949,32 +1096,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Overview
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../aims/overview/" class="md-nav__link">
         
   
   
@@ -985,122 +1110,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-aims" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is AIMS?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-nine-layers" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Nine Layers
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      Key Components
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Key Components">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#spiffe-id" class="md-nav__link">
-    <span class="md-ellipsis">
-      SPIFFE ID
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#workload-identity-token-wit" class="md-nav__link">
-    <span class="md-ellipsis">
-      Workload Identity Token (WIT)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#wimse-proof-token-wpt" class="md-nav__link">
-    <span class="md-ellipsis">
-      WIMSE Proof Token (WPT)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#credential-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      Credential Types
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#attestation-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      Attestation Types
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#aims-vs-id-jag" class="md-nav__link">
-    <span class="md-ellipsis">
-      AIMS vs ID-JAG
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    <span class="md-ellipsis">
-      References
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1113,7 +1122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/" class="md-nav__link">
+      <a href="../../aims/getting-started/" class="md-nav__link">
         
   
   
@@ -1136,7 +1145,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../examples/" class="md-nav__link">
+      <a href="../../aims/examples/" class="md-nav__link">
         
   
   
@@ -1159,7 +1168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../diagrams/" class="md-nav__link">
+      <a href="../../aims/diagrams/" class="md-nav__link">
         
   
   
@@ -1182,7 +1191,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-reference/" class="md-nav__link">
+      <a href="../../aims/api-reference/" class="md-nav__link">
         
   
   
@@ -1527,55 +1536,91 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-aims" class="md-nav__link">
+  <a href="#identity-only-flow" class="md-nav__link">
     <span class="md-ellipsis">
-      What is AIMS?
+      Identity-Only Flow
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-nine-layers" class="md-nav__link">
+  <a href="#resource-managed-flow" class="md-nav__link">
     <span class="md-ellipsis">
-      The Nine Layers
+      Resource-Managed Flow
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-components" class="md-nav__link">
+  <a href="#ps-asserted-flow" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Components
+      PS-Asserted Flow
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Key Components">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#federated-delegation-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Federated Delegation Flow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#component-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#token-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jwt-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWT Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JWT Structure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#spiffe-id" class="md-nav__link">
+  <a href="#identity-token-aa-agentjwt" class="md-nav__link">
     <span class="md-ellipsis">
-      SPIFFE ID
+      Identity Token (aa-agent+jwt)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#workload-identity-token-wit" class="md-nav__link">
+  <a href="#auth-token-aa-authjwt" class="md-nav__link">
     <span class="md-ellipsis">
-      Workload Identity Token (WIT)
+      Auth Token (aa-auth+jwt)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#wimse-proof-token-wpt" class="md-nav__link">
+  <a href="#resource-token-aa-resourcejwt" class="md-nav__link">
     <span class="md-ellipsis">
-      WIMSE Proof Token (WPT)
+      Resource Token (aa-resource+jwt)
     </span>
   </a>
   
@@ -1587,36 +1632,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#credential-types" class="md-nav__link">
+  <a href="#pidl-protocol-diagrams" class="md-nav__link">
     <span class="md-ellipsis">
-      Credential Types
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#attestation-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      Attestation Types
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#aims-vs-id-jag" class="md-nav__link">
-    <span class="md-ellipsis">
-      AIMS vs ID-JAG
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    <span class="md-ellipsis">
-      References
+      PIDL Protocol Diagrams
     </span>
   </a>
   
@@ -1641,276 +1659,232 @@
   
 
 
-<h1 id="aims-overview">AIMS Overview<a class="headerlink" href="#aims-overview" title="Permanent link">&para;</a></h1>
-<p>Agent Identity Management System (AIMS) is a framework for AI agent authentication based on <a href="https://datatracker.ietf.org/doc/html/draft-klrc-aiagent-auth-00">draft-klrc-aiagent-auth-00</a>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Experimental</p>
-<p>This package implements a draft specification that is subject to change.</p>
-</div>
-<h2 id="what-is-aims">What is AIMS?<a class="headerlink" href="#what-is-aims" title="Permanent link">&para;</a></h2>
-<p>Unlike ID-JAG (which is a specific protocol), AIMS is a <strong>framework</strong> that composes multiple identity and security standards:</p>
+<h1 id="aauth-diagrams">AAuth Diagrams<a class="headerlink" href="#aauth-diagrams" title="Permanent link">&para;</a></h1>
+<p>This page provides visual diagrams of the AAuth protocol flows.</p>
+<h2 id="identity-only-flow">Identity-Only Flow<a class="headerlink" href="#identity-only-flow" title="Permanent link">&para;</a></h2>
+<p>The simplest flow where resources only verify agent identity.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Agent
+    participant Resource
+    participant AP as Agent Provider
+
+    Note over Agent,AP: Identity-Only (2-Party)
+
+    Agent-&gt;&gt;Resource: HTTP Request + Signature + Signature-Key
+
+    opt Key not cached
+        Resource-&gt;&gt;AP: GET /.well-known/aauth-agent.json
+        AP--&gt;&gt;Resource: Agent Provider Metadata
+        Resource-&gt;&gt;AP: GET /jwks
+        AP--&gt;&gt;Resource: JWKS (Agent Public Keys)
+    end
+
+    Resource-&gt;&gt;Resource: Verify HTTP Signature
+    Resource--&gt;&gt;Agent: Protected Resource</code></pre>
+<h2 id="resource-managed-flow">Resource-Managed Flow<a class="headerlink" href="#resource-managed-flow" title="Permanent link">&para;</a></h2>
+<p>Resources challenge agents to obtain auth tokens from the Person Server.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Agent
+    participant Resource
+    participant PS as Person Server
+
+    Note over Agent,PS: Resource-Managed (3-Party)
+
+    Agent-&gt;&gt;Resource: HTTP Request + Signature (no auth token)
+    Resource-&gt;&gt;Resource: Verify identity
+    Resource--&gt;&gt;Agent: 401 + WWW-Authenticate: AAuth&lt;br/&gt;realm=... ps=... resource_token=...
+
+    Agent-&gt;&gt;PS: POST /token&lt;br/&gt;grant_type=token-exchange&lt;br/&gt;subject_token=resource_token
+    PS-&gt;&gt;PS: Verify resource token&lt;br/&gt;Check agent authorization
+    PS--&gt;&gt;Agent: Auth Token (aa-auth+jwt with cnf)
+
+    Agent-&gt;&gt;Resource: HTTP Request + Signature + Authorization: Bearer &lt;auth_token&gt;
+    Resource-&gt;&gt;Resource: Verify signature + auth token + cnf binding
+    Resource--&gt;&gt;Agent: Protected Resource</code></pre>
+<h2 id="ps-asserted-flow">PS-Asserted Flow<a class="headerlink" href="#ps-asserted-flow" title="Permanent link">&para;</a></h2>
+<p>Agent proactively obtains auth tokens before accessing resources.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Agent
+    participant Resource
+    participant PS as Person Server
+
+    Note over Agent,PS: PS-Asserted (Proactive)
+
+    Agent-&gt;&gt;Resource: GET /.well-known/aauth-resource.json
+    Resource--&gt;&gt;Agent: Resource Metadata (person_server_uri)
+
+    Agent-&gt;&gt;PS: GET /.well-known/aauth-person.json
+    PS--&gt;&gt;Agent: Person Server Metadata (token_endpoint)
+
+    Agent-&gt;&gt;PS: POST /token (request auth token for resource)
+    PS-&gt;&gt;PS: Verify agent authorization
+    PS--&gt;&gt;Agent: Auth Token
+
+    Agent-&gt;&gt;Resource: HTTP Request + Signature + Authorization: Bearer &lt;auth_token&gt;
+    Resource-&gt;&gt;Resource: Verify signature + auth token
+    Resource--&gt;&gt;Agent: Protected Resource</code></pre>
+<h2 id="federated-delegation-flow">Federated Delegation Flow<a class="headerlink" href="#federated-delegation-flow" title="Permanent link">&para;</a></h2>
+<p>Cross-organizational access with human delegation.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Human
+    participant Agent
+    participant HumanPS as Human's PS
+    participant ResourcePS as Resource's PS
+    participant Resource
+
+    Note over Human,Resource: Federated Delegation (4-Party)
+
+    Human-&gt;&gt;HumanPS: Authorize agent for resources/scopes
+    HumanPS-&gt;&gt;HumanPS: Store delegation
+    HumanPS--&gt;&gt;Human: Delegation confirmed
+
+    Agent-&gt;&gt;Resource: GET /.well-known/aauth-resource.json
+    Resource--&gt;&gt;Agent: Resource Metadata
+
+    Agent-&gt;&gt;HumanPS: Request delegation token
+    HumanPS--&gt;&gt;Agent: Delegation Token (signed by human's PS)
+
+    Agent-&gt;&gt;ResourcePS: POST /token&lt;br/&gt;subject_token=delegation_token&lt;br/&gt;actor_token=agent_identity
+    ResourcePS-&gt;&gt;ResourcePS: Validate delegation&lt;br/&gt;Verify agent identity
+    ResourcePS--&gt;&gt;Agent: Auth Token (valid for resource org)
+
+    Agent-&gt;&gt;Resource: HTTP Request + Signature + Auth Token
+    Resource-&gt;&gt;Resource: Verify signature + auth token
+    Resource--&gt;&gt;Agent: Protected Resource</code></pre>
+<h2 id="component-architecture">Component Architecture<a class="headerlink" href="#component-architecture" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Agents["Agent Layer"]
+        A1[Calendar Bot]
+        A2[Task Agent]
+        A3[Assistant]
+    end
+
+    subgraph AgentProvider["Agent Provider"]
+        AP[Agent Provider]
+        APJWKS[(JWKS)]
+    end
+
+    subgraph Authorization["Authorization Layer"]
+        PS[Person Server]
+        PSJWKS[(JWKS)]
+    end
+
+    subgraph Resources["Resource Layer"]
+        R1[Calendar API]
+        R2[Task API]
+        R3[Email API]
+    end
+
+    A1 &amp; A2 &amp; A3 --&gt;|Identity| AP
+    AP --&gt; APJWKS
+
+    A1 &amp; A2 &amp; A3 --&gt;|Auth Request| PS
+    PS --&gt; PSJWKS
+    PS --&gt;|Delegation| Human[Human Principal]
+
+    A1 --&gt;|Access| R1
+    A2 --&gt;|Access| R2
+    A3 --&gt;|Access| R3
+
+    R1 &amp; R2 &amp; R3 --&gt;|Verify| PS
+    R1 &amp; R2 &amp; R3 --&gt;|Fetch JWKS| AP</code></pre>
+<h2 id="token-types">Token Types<a class="headerlink" href="#token-types" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
-    subgraph Trust Domain
-        SPIRE[SPIRE Server]
-        Agent[AI Agent]
+    subgraph Identity
+        IT[Identity Token&lt;br/&gt;aa-agent+jwt]
     end
 
-    subgraph Target
-        Service[Target Service]
+    subgraph Authorization
+        AT[Auth Token&lt;br/&gt;aa-auth+jwt]
     end
 
-    Agent --&gt;|1. Attest &amp; Get WIT| SPIRE
-    SPIRE --&gt;|2. WIT with cnf| Agent
-    Agent --&gt;|3. Create WPT| Agent
-    Agent --&gt;|4. Request + WIT + WPT| Service
-    Service --&gt;|5. Verify &amp; Authorize| Service
-    Service --&gt;|6. Response| Agent</code></pre>
-<table>
-<thead>
-<tr>
-<th>Standard</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>SPIFFE</strong></td>
-<td>Workload identity (SPIFFE IDs as canonical identifiers)</td>
-</tr>
-<tr>
-<td><strong>WIMSE</strong></td>
-<td>Token-based authentication (WIT and WPT)</td>
-</tr>
-<tr>
-<td><strong>OAuth 2.0</strong></td>
-<td>Authorization delegation for various scenarios</td>
-</tr>
-</tbody>
-</table>
-<h2 id="the-nine-layers">The Nine Layers<a class="headerlink" href="#the-nine-layers" title="Permanent link">&para;</a></h2>
-<p>AIMS defines nine architectural layers for agent identity management:</p>
-<pre class="mermaid"><code>block-beta
-    columns 1
-    block:core["Core Identity"]
-        L1["1. Identifiers&lt;br/&gt;SPIFFE IDs"]
-        L2["2. Credentials&lt;br/&gt;X.509, JWT-SVID, WIT"]
-        L3["3. Attestation&lt;br/&gt;TPM, SGX, Cloud"]
+    subgraph Challenge
+        RT[Resource Token&lt;br/&gt;aa-resource+jwt]
     end
-    block:ops["Operations"]
-        L4["4. Provisioning&lt;br/&gt;SPIRE, Cloud-native"]
-        L5["5. Authentication&lt;br/&gt;mTLS, WIT/WPT"]
-        L6["6. Authorization&lt;br/&gt;Policy-based"]
-    end
-    block:governance["Governance"]
-        L7["7. Monitoring&lt;br/&gt;Audit, Telemetry"]
-        L8["8. Policy&lt;br/&gt;Centralized Mgmt"]
-        L9["9. Compliance&lt;br/&gt;Regulatory"]
-    end</code></pre>
-<table>
-<thead>
-<tr>
-<th>Layer</th>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Identifiers</td>
-<td>SPIFFE IDs as canonical workload identifiers</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Credentials</td>
-<td>X.509 SVIDs, JWT-SVIDs, WITs</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Attestation</td>
-<td>TPM, SGX, SEV-SNP, cloud attestation</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Provisioning</td>
-<td>SPIRE, cloud-native credential issuance</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Authentication</td>
-<td>mTLS, WIT/WPT token flows</td>
-</tr>
-<tr>
-<td>6</td>
-<td>Authorization</td>
-<td>Policy-based access control</td>
-</tr>
-<tr>
-<td>7</td>
-<td>Monitoring</td>
-<td>Audit logging and telemetry</td>
-</tr>
-<tr>
-<td>8</td>
-<td>Policy</td>
-<td>Centralized policy management</td>
-</tr>
-<tr>
-<td>9</td>
-<td>Compliance</td>
-<td>Regulatory and audit requirements</td>
-</tr>
-</tbody>
-</table>
-<h2 id="key-components">Key Components<a class="headerlink" href="#key-components" title="Permanent link">&para;</a></h2>
-<h3 id="spiffe-id">SPIFFE ID<a class="headerlink" href="#spiffe-id" title="Permanent link">&para;</a></h3>
-<p>The canonical identifier format for workloads:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>spiffe://trust-domain/path
+
+    Agent --&gt;|Signs| IT
+    IT --&gt;|In Signature-Key header| Resource
+
+    Resource --&gt;|Issues| RT
+    RT --&gt;|Exchange at PS| PS[Person Server]
+
+    PS --&gt;|Issues| AT
+    AT --&gt;|In Authorization header| Resource</code></pre>
+<h2 id="jwt-structure">JWT Structure<a class="headerlink" href="#jwt-structure" title="Permanent link">&para;</a></h2>
+<h3 id="identity-token-aa-agentjwt">Identity Token (aa-agent+jwt)<a class="headerlink" href="#identity-token-aa-agentjwt" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;header&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&quot;alg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ES256&quot;</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">&quot;typ&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aa-agent+jwt&quot;</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">&quot;kid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;agent-key-1&quot;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">&quot;payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">&quot;iss&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://agents.example.com&quot;</span><span class="p">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aauth:calendar-bot@example.com&quot;</span><span class="p">,</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">&quot;aud&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://resource.example.com&quot;</span><span class="p">],</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">&quot;iat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234567890</span><span class="p">,</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">&quot;exp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234571490</span><span class="p">,</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">&quot;cnf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">      </span><span class="nt">&quot;jwk&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;kty&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EC&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;crv&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;P-256&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>Examples:</p>
-<ul>
-<li><code>spiffe://example.com/agent/calendar-bot</code></li>
-<li><code>spiffe://prod.example.com/workload/api-server</code></li>
-<li><code>spiffe://example.com/service/auth</code></li>
-</ul>
-<h3 id="workload-identity-token-wit">Workload Identity Token (WIT)<a class="headerlink" href="#workload-identity-token-wit" title="Permanent link">&para;</a></h3>
-<p>A JWT representing workload identity per draft-ietf-wimse-s2s-protocol:</p>
+<h3 id="auth-token-aa-authjwt">Auth Token (aa-auth+jwt)<a class="headerlink" href="#auth-token-aa-authjwt" title="Permanent link">&para;</a></h3>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;iss&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://spire.example.com&quot;</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;spiffe://example.com/agent/calendar-bot&quot;</span><span class="p">,</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;aud&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://api.example.com&quot;</span><span class="p">],</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;exp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234567890</span><span class="p">,</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&quot;cnf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;kid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;key-1&quot;</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">}</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;header&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&quot;alg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ES256&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&quot;typ&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aa-auth+jwt&quot;</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">&quot;kid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ps-key-1&quot;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">&quot;payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">&quot;iss&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://ps.example.com&quot;</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aauth:calendar-bot@example.com&quot;</span><span class="p">,</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">&quot;aud&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://resource.example.com&quot;</span><span class="p">],</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;calendar:read calendar:write&quot;</span><span class="p">,</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">&quot;iat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234567890</span><span class="p">,</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="nt">&quot;exp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234571490</span><span class="p">,</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="nt">&quot;cnf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">      </span><span class="nt">&quot;jkt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NzbLsXh8uDCcd-6MNwXF4W_7noWXFZAfHkxZsRGC9Xs&quot;</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="p">}</span>
 </span></code></pre></div>
-<h3 id="wimse-proof-token-wpt">WIMSE Proof Token (WPT)<a class="headerlink" href="#wimse-proof-token-wpt" title="Permanent link">&para;</a></h3>
-<p>Binds authentication to a specific HTTP request:</p>
+<h3 id="resource-token-aa-resourcejwt">Resource Token (aa-resource+jwt)<a class="headerlink" href="#resource-token-aa-resourcejwt" title="Permanent link">&para;</a></h3>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;iss&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;spiffe://example.com/agent/calendar-bot&quot;</span><span class="p">,</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;aud&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://api.example.com&quot;</span><span class="p">,</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;htm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;htu&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/v1/events&quot;</span><span class="p">,</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">&quot;iat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234567890</span><span class="p">,</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">&quot;exp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234568190</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;header&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&quot;alg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ES256&quot;</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">&quot;typ&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aa-resource+jwt&quot;</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">&quot;kid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;resource-key-1&quot;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">&quot;payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nt">&quot;iss&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://resource.example.com&quot;</span><span class="p">,</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aauth:calendar-bot@example.com&quot;</span><span class="p">,</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nt">&quot;aud&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://ps.example.com&quot;</span><span class="p">],</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;calendar:read&quot;</span><span class="p">,</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="nt">&quot;jkt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NzbLsXh8uDCcd-6MNwXF4W_7noWXFZAfHkxZsRGC9Xs&quot;</span><span class="p">,</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="nt">&quot;iat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234567890</span><span class="p">,</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="nt">&quot;exp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234568190</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="p">}</span>
 </span></code></pre></div>
-<h2 id="credential-types">Credential Types<a class="headerlink" href="#credential-types" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-<th>Use Case</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>X.509 SVID</strong></td>
-<td>Certificate-based identity</td>
-<td>mTLS authentication</td>
-</tr>
-<tr>
-<td><strong>JWT-SVID</strong></td>
-<td>JWT-based identity</td>
-<td>Token-based authentication</td>
-</tr>
-<tr>
-<td><strong>WIT</strong></td>
-<td>Workload Identity Token</td>
-<td>WIMSE S2S protocol</td>
-</tr>
-</tbody>
-</table>
-<h2 id="attestation-types">Attestation Types<a class="headerlink" href="#attestation-types" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>TPM</td>
-<td>TPM-based hardware attestation</td>
-</tr>
-<tr>
-<td>SGX</td>
-<td>Intel SGX enclave attestation</td>
-</tr>
-<tr>
-<td>SEV-SNP</td>
-<td>AMD SEV-SNP confidential VM attestation</td>
-</tr>
-<tr>
-<td>TDX</td>
-<td>Intel TDX trusted domain attestation</td>
-</tr>
-<tr>
-<td>Kubernetes</td>
-<td>Kubernetes service account attestation</td>
-</tr>
-<tr>
-<td>AWS</td>
-<td>AWS instance identity document attestation</td>
-</tr>
-<tr>
-<td>GCP</td>
-<td>GCP instance identity token attestation</td>
-</tr>
-<tr>
-<td>Azure</td>
-<td>Azure managed identity attestation</td>
-</tr>
-<tr>
-<td>GitHub</td>
-<td>GitHub Actions OIDC token attestation</td>
-</tr>
-</tbody>
-</table>
-<h2 id="aims-vs-id-jag">AIMS vs ID-JAG<a class="headerlink" href="#aims-vs-id-jag" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>ID-JAG</th>
-<th>AIMS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Type</td>
-<td>Protocol</td>
-<td>Framework</td>
-</tr>
-<tr>
-<td>Identity Model</td>
-<td>OAuth assertions</td>
-<td>SPIFFE IDs</td>
-</tr>
-<tr>
-<td>Credential Format</td>
-<td>JWT assertions</td>
-<td>X.509 SVIDs, JWT-SVIDs, WITs</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Token exchange</td>
-<td>mTLS or WIT/WPT</td>
-</tr>
-<tr>
-<td>Standards</td>
-<td>RFC 8693</td>
-<td>SPIFFE, WIMSE</td>
-</tr>
-</tbody>
-</table>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<h2 id="pidl-protocol-diagrams">PIDL Protocol Diagrams<a class="headerlink" href="#pidl-protocol-diagrams" title="Permanent link">&para;</a></h2>
+<p>Protocol diagrams are also available in PIDL format for generating various output formats:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Generate PlantUML</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>pidl<span class="w"> </span>generate<span class="w"> </span>aauth/pidl/identity_only.json
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Generate Mermaid</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>pidl<span class="w"> </span>generate<span class="w"> </span>-f<span class="w"> </span>mermaid<span class="w"> </span>aauth/pidl/resource_managed.json
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Generate D2</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>pidl<span class="w"> </span>generate<span class="w"> </span>-f<span class="w"> </span>d2<span class="w"> </span>aauth/pidl/federated.json
+</span></code></pre></div>
+<p>Available PIDL files:</p>
 <ul>
-<li><a href="https://datatracker.ietf.org/doc/html/draft-klrc-aiagent-auth-00">draft-klrc-aiagent-auth-00</a></li>
-<li><a href="https://datatracker.ietf.org/doc/draft-ietf-wimse-s2s-protocol/">draft-ietf-wimse-s2s-protocol</a></li>
-<li><a href="https://spiffe.io/">SPIFFE</a></li>
-<li><a href="https://spiffe.io/spire/">SPIRE</a></li>
+<li><code>aauth/pidl/identity_only.json</code></li>
+<li><code>aauth/pidl/resource_managed.json</code></li>
+<li><code>aauth/pidl/ps_asserted.json</code></li>
+<li><code>aauth/pidl/federated.json</code></li>
 </ul>
 
 
