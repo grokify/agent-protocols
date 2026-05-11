@@ -1208,14 +1208,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#new-package" class="md-nav__link">
+  <a href="#new-packages" class="md-nav__link">
     <span class="md-ellipsis">
-      New Package
+      New Packages
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="New Package">
+    <nav class="md-nav" aria-label="New Packages">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      aauth
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#adapterszitadel" class="md-nav__link">
@@ -1429,14 +1438,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#new-package" class="md-nav__link">
+  <a href="#new-packages" class="md-nav__link">
     <span class="md-ellipsis">
-      New Package
+      New Packages
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="New Package">
+    <nav class="md-nav" aria-label="New Packages">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      aauth
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#adapterszitadel" class="md-nav__link">
@@ -1595,17 +1613,67 @@
 
 
 <h1 id="v020-release-notes">v0.2.0 Release Notes<a class="headerlink" href="#v020-release-notes" title="Permanent link">&para;</a></h1>
-<p><strong>Release Date:</strong> 2026-05-10</p>
-<p>This release adds the Zitadel adapter for production integration of all three agent protocols with Zitadel OIDC infrastructure.</p>
+<p><strong>Release Date:</strong> 2026-05-11</p>
+<p>This release adds the AAuth protocol for AI agent authentication and the Zitadel adapter for production integration with OIDC infrastructure.</p>
 <h2 id="highlights">Highlights<a class="headerlink" href="#highlights" title="Permanent link">&para;</a></h2>
 <ul>
+<li><strong>AAuth Protocol</strong>: HTTP message signatures (RFC 9421) with token exchange for AI agent authentication</li>
 <li><strong>Zitadel Adapter</strong>: Production-ready integration with Zitadel for ID-JAG, AIMS, and AAuth protocols</li>
-<li><strong>RFC 8693 Token Exchange</strong>: Exchange ID-JAG assertions for Zitadel access tokens</li>
-<li><strong>RFC 7523 JWT Profile</strong>: Service authentication using JWT bearer grants</li>
-<li><strong>Unified Verification</strong>: Verify tokens from all three protocols against Zitadel's JWKS</li>
-<li><strong>HTTP Middleware</strong>: Protect API endpoints with protocol-specific authentication</li>
+<li><strong>Unified Navigation</strong>: AIStandards.io navbar integration across documentation site</li>
+<li><strong>Module Rename</strong>: Repository moved to <code>github.com/aistandardsio/agent-protocols</code></li>
 </ul>
-<h2 id="new-package">New Package<a class="headerlink" href="#new-package" title="Permanent link">&para;</a></h2>
+<h2 id="new-packages">New Packages<a class="headerlink" href="#new-packages" title="Permanent link">&para;</a></h2>
+<h3 id="aauth">aauth<a class="headerlink" href="#aauth" title="Permanent link">&para;</a></h3>
+<p>Agent Authentication protocol implementing <a href="https://datatracker.ietf.org/doc/draft-hardt-oauth-aauth-protocol/">draft-hardt-oauth-aauth-protocol</a>.</p>
+<p><strong>Components:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Agent</code></td>
+<td>Client with automatic HTTP request signing</td>
+</tr>
+<tr>
+<td><code>Transport</code></td>
+<td><code>http.RoundTripper</code> for transparent signing</td>
+</tr>
+<tr>
+<td><code>AuthServer</code></td>
+<td>Token exchange and JWKS endpoints</td>
+</tr>
+<tr>
+<td><code>ResourceServer</code></td>
+<td>Middleware for token validation</td>
+</tr>
+<tr>
+<td><code>Discovery</code></td>
+<td>Metadata retrieval client</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Features:</strong></p>
+<ul>
+<li>HTTP message signatures per RFC 9421</li>
+<li>Token types: <code>aa-agent+jwt</code> and <code>aa-auth+jwt</code></li>
+<li>Human-to-agent delegation via Person Server</li>
+<li>Proof-of-possession with <code>cnf</code> claim</li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;github.com/aistandardsio/agent-protocols/aauth&quot;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// Create agent with cryptographic identity</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nx">agentID</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">aauth</span><span class="p">.</span><span class="nx">NewAAuthID</span><span class="p">(</span><span class="s">&quot;calendar-bot&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;example.com&quot;</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nx">agent</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">aauth</span><span class="p">.</span><span class="nx">NewAgent</span><span class="p">(</span><span class="nx">agentID</span><span class="p">,</span><span class="w"> </span><span class="nx">privateKey</span><span class="p">)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">// Use automatic signing transport</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nx">client</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Client</span><span class="p">{</span><span class="nx">Transport</span><span class="p">:</span><span class="w"> </span><span class="nx">agent</span><span class="p">.</span><span class="nx">Transport</span><span class="p">(</span><span class="kc">nil</span><span class="p">)}</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nx">resp</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;https://api.example.com/events&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 <h3 id="adapterszitadel">adapters/zitadel<a class="headerlink" href="#adapterszitadel" title="Permanent link">&para;</a></h3>
 <p>Integration with <a href="https://zitadel.com/">Zitadel</a> OIDC infrastructure.</p>
 <p><strong>Components:</strong></p>
@@ -1644,44 +1712,53 @@
 <li>Battle-tested <a href="https://github.com/zitadel/oidc">zitadel/oidc</a> library</li>
 </ul>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>go<span class="w"> </span>get<span class="w"> </span>github.com/aistandardsio/agent-protocols@v0.2.0
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>go<span class="w"> </span>get<span class="w"> </span>github.com/aistandardsio/agent-protocols@v0.2.0
 </span></code></pre></div>
 <h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
 <h3 id="token-exchange">Token Exchange<a class="headerlink" href="#token-exchange" title="Permanent link">&para;</a></h3>
-<div class="language-go highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;github.com/aistandardsio/agent-protocols/adapters/zitadel&quot;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nx">exchanger</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">NewTokenExchanger</span><span class="p">(</span><span class="s">&quot;https://your-instance.zitadel.cloud&quot;</span><span class="p">)</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nx">resp</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">exchanger</span><span class="p">.</span><span class="nx">ExchangeAssertion</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">signedAssertion</span><span class="p">,</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">WithScope</span><span class="p">(</span><span class="s">&quot;openid profile&quot;</span><span class="p">),</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">)</span>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;github.com/aistandardsio/agent-protocols/adapters/zitadel&quot;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nx">exchanger</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">NewTokenExchanger</span><span class="p">(</span><span class="s">&quot;https://your-instance.zitadel.cloud&quot;</span><span class="p">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nx">resp</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">exchanger</span><span class="p">.</span><span class="nx">ExchangeAssertion</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">signedAssertion</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">WithScope</span><span class="p">(</span><span class="s">&quot;openid profile&quot;</span><span class="p">),</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="token-verification">Token Verification<a class="headerlink" href="#token-verification" title="Permanent link">&para;</a></h3>
-<div class="language-go highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">NewVerifier</span><span class="p">(</span><span class="s">&quot;https://your-instance.zitadel.cloud&quot;</span><span class="p">)</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1">// Verify any protocol</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nx">assertion</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">verifier</span><span class="p">.</span><span class="nx">VerifyIDJAGAssertion</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">token</span><span class="p">)</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nx">wit</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">verifier</span><span class="p">.</span><span class="nx">VerifyAIMSWIT</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">token</span><span class="p">)</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nx">agentToken</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">verifier</span><span class="p">.</span><span class="nx">VerifyAAuthAgentToken</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">token</span><span class="p">)</span>
-</span></code></pre></div>
-<h3 id="http-middleware">HTTP Middleware<a class="headerlink" href="#http-middleware" title="Permanent link">&para;</a></h3>
 <div class="language-go highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">NewVerifier</span><span class="p">(</span><span class="s">&quot;https://your-instance.zitadel.cloud&quot;</span><span class="p">)</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nx">http</span><span class="p">.</span><span class="nx">Handle</span><span class="p">(</span><span class="s">&quot;/api/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">RequireIDJAG</span><span class="p">(</span><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="p">).</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">handler</span><span class="p">))</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nx">http</span><span class="p">.</span><span class="nx">Handle</span><span class="p">(</span><span class="s">&quot;/workload/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">RequireAIMS</span><span class="p">(</span><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="p">).</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">handler</span><span class="p">))</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nx">http</span><span class="p">.</span><span class="nx">Handle</span><span class="p">(</span><span class="s">&quot;/agent/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">RequireAAuth</span><span class="p">(</span><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="p">).</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">handler</span><span class="p">))</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">// Verify any protocol</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nx">assertion</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">verifier</span><span class="p">.</span><span class="nx">VerifyIDJAGAssertion</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">token</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nx">wit</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">verifier</span><span class="p">.</span><span class="nx">VerifyAIMSWIT</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">token</span><span class="p">)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nx">agentToken</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">verifier</span><span class="p">.</span><span class="nx">VerifyAAuthAgentToken</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">token</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="http-middleware">HTTP Middleware<a class="headerlink" href="#http-middleware" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">NewVerifier</span><span class="p">(</span><span class="s">&quot;https://your-instance.zitadel.cloud&quot;</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nx">http</span><span class="p">.</span><span class="nx">Handle</span><span class="p">(</span><span class="s">&quot;/api/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">RequireIDJAG</span><span class="p">(</span><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="p">).</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">handler</span><span class="p">))</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nx">http</span><span class="p">.</span><span class="nx">Handle</span><span class="p">(</span><span class="s">&quot;/workload/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">RequireAIMS</span><span class="p">(</span><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="p">).</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">handler</span><span class="p">))</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nx">http</span><span class="p">.</span><span class="nx">Handle</span><span class="p">(</span><span class="s">&quot;/agent/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">RequireAAuth</span><span class="p">(</span><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="p">).</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">handler</span><span class="p">))</span>
 </span></code></pre></div>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <p>Run the self-contained demos:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># ID-JAG token exchange</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>go<span class="w"> </span>run<span class="w"> </span>./adapters/zitadel/examples/idjag
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># AIMS WIT verification</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>go<span class="w"> </span>run<span class="w"> </span>./adapters/zitadel/examples/aims
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># AAuth agent authentication</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>go<span class="w"> </span>run<span class="w"> </span>./adapters/zitadel/examples/aauth
+<p><strong>AAuth Protocol:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>go<span class="w"> </span>run<span class="w"> </span>./aauth/examples/simple<span class="w">       </span><span class="c1"># Agent authentication</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>go<span class="w"> </span>run<span class="w"> </span>./aauth/examples/delegation<span class="w">   </span><span class="c1"># Human-to-agent delegation</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>go<span class="w"> </span>run<span class="w"> </span>./aauth/examples/exchange<span class="w">     </span><span class="c1"># Token exchange flow</span>
+</span></code></pre></div>
+<p><strong>Zitadel Adapter:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>go<span class="w"> </span>run<span class="w"> </span>./adapters/zitadel/examples/idjag<span class="w">  </span><span class="c1"># ID-JAG token exchange</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>go<span class="w"> </span>run<span class="w"> </span>./adapters/zitadel/examples/aims<span class="w">   </span><span class="c1"># AIMS WIT verification</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>go<span class="w"> </span>run<span class="w"> </span>./adapters/zitadel/examples/aauth<span class="w">  </span><span class="c1"># AAuth agent authentication</span>
 </span></code></pre></div>
 <h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
+<p><strong>AAuth:</strong></p>
+<ul>
+<li><a href="../../aauth/overview/">AAuth Overview</a></li>
+<li><a href="../../aauth/getting-started/">Getting Started</a></li>
+<li><a href="../../aauth/examples/">Examples</a></li>
+<li><a href="../../aauth/api-reference/">API Reference</a></li>
+</ul>
+<p><strong>Zitadel Adapter:</strong></p>
 <ul>
 <li><a href="../../adapters/zitadel/overview/">Zitadel Adapter Overview</a></li>
 <li><a href="../../adapters/zitadel/getting-started/">Getting Started</a></li>
@@ -1708,6 +1785,13 @@
 <li><a href="https://github.com/grokify">@grokify</a></li>
 </ul>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p><strong>AAuth:</strong></p>
+<ul>
+<li><a href="https://datatracker.ietf.org/doc/draft-hardt-oauth-aauth-protocol/">draft-hardt-oauth-aauth-protocol</a> - AAuth Protocol specification</li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc9421">RFC 9421</a> - HTTP Message Signatures</li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc7800">RFC 7800</a> - Proof-of-Possession Key Semantics</li>
+</ul>
+<p><strong>Zitadel:</strong></p>
 <ul>
 <li><a href="https://github.com/zitadel/zitadel">Zitadel</a> - Cloud-native identity provider</li>
 <li><a href="https://github.com/zitadel/oidc">zitadel/oidc</a> - Go OIDC library</li>
