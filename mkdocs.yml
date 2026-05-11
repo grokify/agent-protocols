@@ -1,6 +1,6 @@
 site_name: agent-protocols
 site_description: Go implementation of agent-to-agent communication protocols
-site_url: https://aistandardsio.github.io/agent-protocols/
+site_url: https://aistandards.io/agent-protocols/
 repo_url: https://github.com/aistandardsio/agent-protocols
 repo_name: aistandardsio/agent-protocols
 
@@ -31,7 +31,7 @@ theme:
     - content.tabs.link
 
 extra_css:
-  - https://aistandardsio.github.io/css/aistandardsio-mkdocs.css
+  - https://aistandards.io/css/aistandardsio-mkdocs.css
 
 markdown_extensions:
   - pymdownx.highlight:
