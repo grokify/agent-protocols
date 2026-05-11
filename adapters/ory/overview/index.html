@@ -10,10 +10,10 @@
       
       
       
-        <link rel="canonical" href="https://aistandards.io/agent-protocols/adapters/zitadel/overview/">
+        <link rel="canonical" href="https://aistandards.io/agent-protocols/adapters/ory/overview/">
       
       
-        <link rel="prev" href="../../../aims/api-reference/">
+        <link rel="prev" href="../../sharkauth/getting-started/">
       
       
         <link rel="next" href="../getting-started/">
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#zitadel-adapter" class="md-skip">
+        <a href="#ory-adapter-overview" class="md-skip">
           Skip to content
         </a>
       
@@ -952,8 +952,6 @@
                 
   
   
-    
-  
   
   
     
@@ -963,11 +961,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_1" >
         
           
           <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
@@ -983,7 +983,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_1">
             <span class="md-nav__icon md-icon"></span>
             Zitadel
@@ -994,32 +994,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Overview
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../zitadel/overview/" class="md-nav__link">
         
   
   
@@ -1030,122 +1008,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-zitadel" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why Zitadel?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#components" class="md-nav__link">
-    <span class="md-ellipsis">
-      Components
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Components">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tokenexchanger" class="md-nav__link">
-    <span class="md-ellipsis">
-      TokenExchanger
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#jwtprofilesource" class="md-nav__link">
-    <span class="md-ellipsis">
-      JWTProfileSource
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verifier" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verifier
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#middleware" class="md-nav__link">
-    <span class="md-ellipsis">
-      Middleware
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#protocol-mappings" class="md-nav__link">
-    <span class="md-ellipsis">
-      Protocol Mappings
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      Architecture
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Next Steps
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1158,7 +1020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/" class="md-nav__link">
+      <a href="../../zitadel/getting-started/" class="md-nav__link">
         
   
   
@@ -1181,7 +1043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../examples/" class="md-nav__link">
+      <a href="../../zitadel/examples/" class="md-nav__link">
         
   
   
@@ -1204,7 +1066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-reference/" class="md-nav__link">
+      <a href="../../zitadel/api-reference/" class="md-nav__link">
         
   
   
@@ -1328,6 +1190,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1337,13 +1201,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" checked>
         
           
           <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
@@ -1359,7 +1221,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_3">
             <span class="md-nav__icon md-icon"></span>
             Ory
@@ -1370,10 +1232,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../ory/overview/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1384,6 +1268,128 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-ory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Ory?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fosite-integration-adaptersoryfosite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fosite Integration (adapters/ory/fosite)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hydra-integration-adaptersoryhydra" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hydra Integration (adapters/ory/hydra)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-grant-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Grant Handlers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hydra-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hydra Client
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocol-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Protocol Support
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1396,7 +1402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ory/getting-started/" class="md-nav__link">
+      <a href="../getting-started/" class="md-nav__link">
         
   
   
@@ -1575,18 +1581,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#why-ory" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-zitadel" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why Zitadel?
+      Why Ory?
     </span>
   </a>
   
@@ -1603,36 +1600,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tokenexchanger" class="md-nav__link">
+  <a href="#fosite-integration-adaptersoryfosite" class="md-nav__link">
     <span class="md-ellipsis">
-      TokenExchanger
+      Fosite Integration (adapters/ory/fosite)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#jwtprofilesource" class="md-nav__link">
+  <a href="#hydra-integration-adaptersoryhydra" class="md-nav__link">
     <span class="md-ellipsis">
-      JWTProfileSource
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verifier" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verifier
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#middleware" class="md-nav__link">
-    <span class="md-ellipsis">
-      Middleware
+      Hydra Integration (adapters/ory/hydra)
     </span>
   </a>
   
@@ -1644,9 +1623,42 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#protocol-mappings" class="md-nav__link">
+  <a href="#features" class="md-nav__link">
     <span class="md-ellipsis">
-      Protocol Mappings
+      Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-grant-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Grant Handlers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hydra-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hydra Client
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocol-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Protocol Support
     </span>
   </a>
   
@@ -1689,147 +1701,142 @@
   
 
 
-<h1 id="zitadel-adapter">Zitadel Adapter<a class="headerlink" href="#zitadel-adapter" title="Permanent link">&para;</a></h1>
-<p>Integration of agent-protocols with <a href="https://zitadel.com/">Zitadel</a> OIDC infrastructure.</p>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The Zitadel adapter provides production-ready integration between all three agent protocols (ID-JAG, AIMS, AAuth) and Zitadel's identity infrastructure. It leverages Zitadel's native support for:</p>
+<h1 id="ory-adapter-overview">Ory Adapter Overview<a class="headerlink" href="#ory-adapter-overview" title="Permanent link">&para;</a></h1>
+<p>The Ory adapter integrates agent-protocols with the <a href="https://www.ory.sh/">Ory</a> ecosystem, including Fosite (OAuth 2.0 SDK) and Hydra (OAuth 2.0 server).</p>
+<h2 id="why-ory">Why Ory?<a class="headerlink" href="#why-ory" title="Permanent link">&para;</a></h2>
+<p>Ory provides a mature, production-tested OAuth 2.0 infrastructure:</p>
 <ul>
-<li><strong>RFC 8693 Token Exchange</strong> - Exchange assertions for access tokens</li>
-<li><strong>RFC 7523 JWT Profile</strong> - JWT bearer grants for service authentication</li>
-<li><strong>OIDC Discovery</strong> - Automatic endpoint discovery</li>
-<li><strong>JWKS Verification</strong> - Key rotation and validation</li>
+<li><strong>Fosite</strong> - Extensible OAuth 2.0 SDK for building custom authorization servers</li>
+<li><strong>Hydra</strong> - Production-ready OAuth 2.0 and OpenID Connect server</li>
+<li><strong>Wide Adoption</strong> - Used by thousands of organizations in production</li>
+<li><strong>Extensible</strong> - Custom grant handlers for agent-specific flows</li>
+<li><strong>Open Source</strong> - Apache 2.0 licensed</li>
 </ul>
-<h2 id="why-zitadel">Why Zitadel?<a class="headerlink" href="#why-zitadel" title="Permanent link">&para;</a></h2>
+<h2 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h2>
+<h3 id="fosite-integration-adaptersoryfosite">Fosite Integration (<code>adapters/ory/fosite</code>)<a class="headerlink" href="#fosite-integration-adaptersoryfosite" title="Permanent link">&para;</a></h3>
+<p>Custom OAuth grant handlers for embedding agent authentication in your own OAuth server:</p>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;github.com/aistandardsio/agent-protocols/adapters/ory/fosite&quot;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// Create ID-JAG assertion handler</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nx">verifier</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">idjag</span><span class="p">.</span><span class="nx">NewJWKSVerifier</span><span class="p">(</span><span class="nx">jwksURL</span><span class="p">,</span><span class="w"> </span><span class="nx">idjag</span><span class="p">.</span><span class="nx">VerifierOptions</span><span class="p">{})</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nx">config</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">fosite</span><span class="p">.</span><span class="nx">DefaultHandlerConfig</span><span class="p">(</span><span class="s">&quot;https://auth.example.com&quot;</span><span class="p">)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nx">storage</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">fosite</span><span class="p">.</span><span class="nx">NewMemoryStorage</span><span class="p">()</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nx">handler</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">fosite</span><span class="p">.</span><span class="nx">NewIDJAGHandler</span><span class="p">(</span><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">config</span><span class="p">,</span><span class="w"> </span><span class="nx">storage</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">// Register with your OAuth provider</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nx">provider</span><span class="p">.</span><span class="nx">RegisterHandler</span><span class="p">(</span><span class="nx">handler</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="hydra-integration-adaptersoryhydra">Hydra Integration (<code>adapters/ory/hydra</code>)<a class="headerlink" href="#hydra-integration-adaptersoryhydra" title="Permanent link">&para;</a></h3>
+<p>Client library for interacting with Ory Hydra:</p>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;github.com/aistandardsio/agent-protocols/adapters/ory/hydra&quot;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1">// Create Hydra client</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">hydra</span><span class="p">.</span><span class="nx">NewClient</span><span class="p">(</span><span class="s">&quot;https://hydra.example.com&quot;</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nx">hydra</span><span class="p">.</span><span class="nx">WithAdminURL</span><span class="p">(</span><span class="s">&quot;https://hydra-admin.example.com&quot;</span><span class="p">),</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nx">hydra</span><span class="p">.</span><span class="nx">WithClientCredentials</span><span class="p">(</span><span class="s">&quot;client-id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;client-secret&quot;</span><span class="p">),</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1">// Exchange ID-JAG assertion</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nx">resp</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">ExchangeIDJAG</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">assertion</span><span class="p">,</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nx">hydra</span><span class="p">.</span><span class="nx">WithScope</span><span class="p">(</span><span class="s">&quot;read write&quot;</span><span class="p">),</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h2>
+<h3 id="custom-grant-handlers">Custom Grant Handlers<a class="headerlink" href="#custom-grant-handlers" title="Permanent link">&para;</a></h3>
+<p>The Fosite subpackage provides handlers for:</p>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
-<th>Benefit</th>
+<th>Grant Type</th>
+<th>Handler</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Written in Go (75%)</td>
-<td>Native integration, shared tooling</td>
+<td>JWT Bearer</td>
+<td><code>IDJAGHandler</code></td>
+<td>RFC 7523 JWT assertion grants</td>
 </tr>
 <tr>
-<td>RFC 8693 Support</td>
-<td>Direct token exchange for ID-JAG</td>
+<td>Token Exchange</td>
+<td><code>IDJAGHandler</code></td>
+<td>RFC 8693 token exchange</td>
 </tr>
 <tr>
-<td>JWT Profile (RFC 7523)</td>
-<td>Service-to-service authentication</td>
-</tr>
-<tr>
-<td>OpenID Certified</td>
-<td>Standards compliance</td>
-</tr>
-<tr>
-<td>Multi-tenant</td>
-<td>Fits agent scenarios</td>
-</tr>
-<tr>
-<td><a href="https://github.com/zitadel/oidc">zitadel/oidc</a> library</td>
-<td>Battle-tested Go OIDC library</td>
+<td>AAuth Agent</td>
+<td><code>AAuthHandler</code></td>
+<td>Custom AAuth agent token grants</td>
 </tr>
 </tbody>
 </table>
-<h2 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h2>
-<h3 id="tokenexchanger">TokenExchanger<a class="headerlink" href="#tokenexchanger" title="Permanent link">&para;</a></h3>
-<p>Exchanges ID-JAG assertions for Zitadel access tokens using RFC 8693.</p>
-<div class="language-go highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">exchanger</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">NewTokenExchanger</span><span class="p">(</span><span class="s">&quot;https://zitadel.example.com&quot;</span><span class="p">)</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nx">resp</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">exchanger</span><span class="p">.</span><span class="nx">ExchangeAssertion</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">signedAssertion</span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">WithScope</span><span class="p">(</span><span class="s">&quot;openid profile&quot;</span><span class="p">),</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">WithAudience</span><span class="p">(</span><span class="s">&quot;https://api.example.com&quot;</span><span class="p">),</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span>
-</span></code></pre></div>
-<h3 id="jwtprofilesource">JWTProfileSource<a class="headerlink" href="#jwtprofilesource" title="Permanent link">&para;</a></h3>
-<p>Implements <code>oauth2.TokenSource</code> for automatic token management with JWT profile grants.</p>
-<div class="language-go highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">source</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">NewJWTProfileSource</span><span class="p">(</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="s">&quot;https://zitadel.example.com&quot;</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="s">&quot;client-id&quot;</span><span class="p">,</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nx">signer</span><span class="p">,</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">WithJWTProfileScopes</span><span class="p">(</span><span class="s">&quot;openid&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;profile&quot;</span><span class="p">),</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">)</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nx">token</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">source</span><span class="p">.</span><span class="nx">Token</span><span class="p">()</span><span class="w"> </span><span class="c1">// Automatically cached and refreshed</span>
-</span></code></pre></div>
-<h3 id="verifier">Verifier<a class="headerlink" href="#verifier" title="Permanent link">&para;</a></h3>
-<p>Validates tokens from all three protocols against Zitadel's JWKS.</p>
-<div class="language-go highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">NewVerifier</span><span class="p">(</span><span class="s">&quot;https://zitadel.example.com&quot;</span><span class="p">)</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1">// Verify ID-JAG assertion</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nx">assertion</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">verifier</span><span class="p">.</span><span class="nx">VerifyIDJAGAssertion</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">tokenString</span><span class="p">)</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">// Verify AIMS WIT</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nx">wit</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">verifier</span><span class="p">.</span><span class="nx">VerifyAIMSWIT</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">tokenString</span><span class="p">)</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1">// Verify AAuth agent token</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nx">agentToken</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">verifier</span><span class="p">.</span><span class="nx">VerifyAAuthAgentToken</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">tokenString</span><span class="p">)</span>
-</span></code></pre></div>
-<h3 id="middleware">Middleware<a class="headerlink" href="#middleware" title="Permanent link">&para;</a></h3>
-<p>HTTP middleware for protecting endpoints with Zitadel token validation.</p>
-<div class="language-go highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">NewVerifier</span><span class="p">(</span><span class="s">&quot;https://zitadel.example.com&quot;</span><span class="p">)</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">// Protocol-specific middleware</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nx">http</span><span class="p">.</span><span class="nx">Handle</span><span class="p">(</span><span class="s">&quot;/api/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">RequireIDJAG</span><span class="p">(</span><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="p">).</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">apiHandler</span><span class="p">))</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nx">http</span><span class="p">.</span><span class="nx">Handle</span><span class="p">(</span><span class="s">&quot;/workload/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">RequireAIMS</span><span class="p">(</span><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="p">).</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">workloadHandler</span><span class="p">))</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nx">http</span><span class="p">.</span><span class="nx">Handle</span><span class="p">(</span><span class="s">&quot;/agent/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">zitadel</span><span class="p">.</span><span class="nx">RequireAAuth</span><span class="p">(</span><span class="nx">verifier</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="p">).</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">agentHandler</span><span class="p">))</span>
-</span></code></pre></div>
-<h2 id="protocol-mappings">Protocol Mappings<a class="headerlink" href="#protocol-mappings" title="Permanent link">&para;</a></h2>
+<h3 id="hydra-client">Hydra Client<a class="headerlink" href="#hydra-client" title="Permanent link">&para;</a></h3>
+<p>The Hydra client supports:</p>
+<ul>
+<li><strong>Token Exchange</strong> (RFC 8693) - Exchange agent tokens for access tokens</li>
+<li><strong>JWT Bearer</strong> (RFC 7523) - Use JWT assertions as grants</li>
+<li><strong>Token Introspection</strong> - Validate and inspect tokens</li>
+<li><strong>Actor Claims</strong> - Full delegation chain support</li>
+</ul>
+<h2 id="protocol-support">Protocol Support<a class="headerlink" href="#protocol-support" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>Protocol</th>
-<th>Input</th>
-<th>Zitadel Operation</th>
-<th>Output</th>
+<th>Fosite</th>
+<th>Hydra</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>ID-JAG</td>
-<td>Signed assertion</td>
-<td>Token exchange (RFC 8693)</td>
-<td>Access token</td>
-</tr>
-<tr>
-<td>ID-JAG</td>
-<td>Signed assertion</td>
-<td>JWT profile (RFC 7523)</td>
-<td>Access token</td>
-</tr>
-<tr>
-<td>AIMS</td>
-<td>WIT (JWT-SVID)</td>
-<td>JWKS verification</td>
-<td>Validated claims</td>
+<td>Full</td>
+<td>Full</td>
 </tr>
 <tr>
 <td>AAuth</td>
-<td>Agent token</td>
-<td>JWKS verification</td>
-<td>Verified identity</td>
+<td>Full</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>AIMS</td>
+<td>Verification only</td>
+<td>Token introspection</td>
 </tr>
 </tbody>
 </table>
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>│   Agent         │     │  Zitadel Adapter │     │    Zitadel      │
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>│                 │     │                  │     │                 │
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>│  ID-JAG ────────┼────▶│  TokenExchanger  │────▶│  Token Endpoint │
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│  Assertion      │     │                  │     │                 │
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>│                 │     │  JWTProfileSource│────▶│  JWT Profile    │
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>│  AIMS WIT ──────┼────▶│                  │     │                 │
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>│                 │     │  Verifier ◀──────┼─────│  JWKS Endpoint  │
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>│  AAuth Token ───┼────▶│                  │     │                 │
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>│                 │     │  Middleware      │     │  Discovery      │
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>└─────────────────┘     └──────────────────┘     └─────────────────┘
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>┌─────────────────────────────────────────────────────────┐
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>│                    Your Application                      │
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├─────────────────────────────────────────────────────────┤
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│                                                          │
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│  ┌─────────────────┐           ┌─────────────────┐      │
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│  │  Fosite-based   │           │  Hydra Client   │      │
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│  │  OAuth Server   │           │                 │      │
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│  │                 │           │                 │      │
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│  │  ┌───────────┐  │           │  ┌───────────┐  │      │
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│  │  │ ID-JAG    │  │           │  │ Exchange  │  │      │
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│  │  │ Handler   │  │           │  │ ID-JAG    │  │      │
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>│  │  └───────────┘  │           │  └───────────┘  │      │
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│  │  ┌───────────┐  │           │  ┌───────────┐  │      │
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>│  │  │ AAuth     │  │           │  │ Exchange  │  │      │
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│  │  │ Handler   │  │           │  │ AAuth     │  │      │
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>│  │  └───────────┘  │           │  └───────────┘  │      │
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>│  └─────────────────┘           └─────────────────┘      │
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>│           │                             │                │
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>└───────────┼─────────────────────────────┼────────────────┘
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>            │                             │
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>            ▼                             ▼
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    ┌───────────────┐             ┌───────────────┐
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>    │ Token Storage │             │  Ory Hydra    │
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>    └───────────────┘             └───────────────┘
 </span></code></pre></div>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../getting-started/">Getting Started</a> - Installation and configuration</li>
-<li><a href="../examples/">Examples</a> - Running the demo applications</li>
-<li><a href="../api-reference/">API Reference</a> - Complete API documentation</li>
+<li><a href="../getting-started/">Getting Started</a> - Installation and basic usage</li>
+<li><a href="../../adapters/ory/examples/">Examples</a> - Working code examples</li>
+<li><a href="https://pkg.go.dev/github.com/aistandardsio/agent-protocols/adapters/ory">API Reference</a> - Full API documentation</li>
 </ul>
 
 

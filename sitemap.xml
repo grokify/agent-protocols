@@ -25,6 +25,22 @@
          <lastmod>2026-05-11</lastmod>
     </url>
     <url>
+         <loc>https://aistandards.io/agent-protocols/adapters/ory/getting-started/</loc>
+         <lastmod>2026-05-11</lastmod>
+    </url>
+    <url>
+         <loc>https://aistandards.io/agent-protocols/adapters/ory/overview/</loc>
+         <lastmod>2026-05-11</lastmod>
+    </url>
+    <url>
+         <loc>https://aistandards.io/agent-protocols/adapters/sharkauth/getting-started/</loc>
+         <lastmod>2026-05-11</lastmod>
+    </url>
+    <url>
+         <loc>https://aistandards.io/agent-protocols/adapters/sharkauth/overview/</loc>
+         <lastmod>2026-05-11</lastmod>
+    </url>
+    <url>
          <loc>https://aistandards.io/agent-protocols/adapters/zitadel/api-reference/</loc>
          <lastmod>2026-05-11</lastmod>
     </url>
@@ -98,6 +114,10 @@
     </url>
     <url>
          <loc>https://aistandards.io/agent-protocols/releases/v0.2.0/</loc>
+         <lastmod>2026-05-11</lastmod>
+    </url>
+    <url>
+         <loc>https://aistandards.io/agent-protocols/releases/v0.3.0/</loc>
          <lastmod>2026-05-11</lastmod>
     </url>
 </urlset>
