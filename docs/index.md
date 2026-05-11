@@ -166,8 +166,8 @@ Production-ready integrations with identity infrastructure.
 
 ### Releases
 
-- [v0.2.0](releases/v0.2.0.md) - Zitadel adapter (2026-05-10)
-- [v0.1.0](releases/v0.1.0.md) - Initial release (2026-04-19)
+- [v0.2.0](releases/v0.2.0.md) - AAuth protocol, Zitadel adapter (2026-05-11)
+- [v0.1.0](releases/v0.1.0.md) - ID-JAG and AIMS protocols (2026-04-19)
 
 ## Related Specifications
 

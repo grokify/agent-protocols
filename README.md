@@ -25,13 +25,17 @@
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
  [license-url]: https://github.com/aistandardsio/agent-protocols/blob/master/LICENSE
 
-Go implementation of agent-to-agent communication protocols, starting with ID-JAG (Identity Assertion JWT Authorization Grant).
+Go implementation of agent-to-agent communication protocols for AI agent authentication and authorization.
 
 > **EXPERIMENTAL**: This library implements draft specifications that are subject to change.
 
 ## Overview
 
 This repository provides Go libraries for emerging agent-to-agent protocols:
+
+- **[aauth](./aauth/)** - Agent Authentication using HTTP message signatures (RFC 9421) based on [draft-hardt-oauth-aauth-protocol](https://datatracker.ietf.org/doc/draft-hardt-oauth-aauth-protocol/)
+  - [Examples](./aauth/examples/) - Working demos (simple, delegation, token exchange)
+  - [PIDL Definitions](./aauth/pidl/) - Protocol diagrams
 
 - **[idjag](./idjag/)** - Identity Assertion JWT Authorization Grant based on [draft-ietf-oauth-identity-assertion-authz-grant](https://datatracker.ietf.org/doc/draft-ietf-oauth-identity-assertion-authz-grant/)
   - [Examples](./idjag/examples/) - Working demos
@@ -41,6 +45,12 @@ This repository provides Go libraries for emerging agent-to-agent protocols:
   - [Examples](./aims/examples/) - Working demos (simple WIT/WPT, mTLS)
   - [PIDL Definitions](./aims/pidl/) - Protocol diagrams
 
+### Adapters
+
+Production-ready integrations with identity infrastructure:
+
+- **[adapters/zitadel](./adapters/zitadel/)** - Integration with [Zitadel](https://zitadel.com/) OIDC for all three protocols
+
 ## Installation
 
 ```bash
@@ -49,86 +59,103 @@ go get github.com/aistandardsio/agent-protocols
 
 ## Quick Start
 
-### ID-JAG Token Exchange
+### AAuth - HTTP Message Signatures
 
 ```go
-package main
+import "github.com/aistandardsio/agent-protocols/aauth"
 
-import (
-    "context"
-    "fmt"
-    "time"
+// Create agent with cryptographic identity
+agentID, _ := aauth.NewAAuthID("calendar-bot", "example.com")
+agent, _ := aauth.NewAgent(agentID, privateKey,
+    aauth.WithAgentProviderURL("https://agents.example.com"))
 
-    "github.com/aistandardsio/agent-protocols/idjag"
-)
+// Create signed HTTP request
+req, _ := agent.SignedRequest(ctx, "GET", "https://api.example.com/events", nil)
 
-func main() {
-    // Create an assertion for token exchange
-    assertion := &idjag.Assertion{
-        Issuer:    "https://issuer.example.com",
-        Subject:   "agent:my-agent",
-        Audience:  []string{"https://auth.example.com"},
-        IssuedAt:  time.Now(),
-        ExpiresAt: time.Now().Add(5 * time.Minute),
-    }
-
-    // Exchange assertion for access token
-    client := &idjag.TokenExchangeClient{
-        TokenURL: "https://auth.example.com/token",
-    }
-
-    resp, err := client.Exchange(context.Background(), signedAssertion)
-    if err != nil {
-        panic(err)
-    }
-
-    fmt.Printf("Access Token: %s\n", resp.AccessToken)
-}
+// Or use automatic signing transport
+client := &http.Client{Transport: agent.Transport(nil)}
+resp, _ := client.Get("https://api.example.com/events")
 ```
 
-### Human-to-Agent Delegation
+### ID-JAG - Token Exchange
 
 ```go
-// Create assertion with delegation chain
-assertion := &idjag.Assertion{
-    Issuer:    "https://issuer.example.com",
-    Subject:   "user:alice",  // Human identity
-    Audience:  []string{"https://auth.example.com"},
-    IssuedAt:  time.Now(),
-    ExpiresAt: time.Now().Add(5 * time.Minute),
-    Actor: &idjag.Actor{
-        Subject: "agent:calendar-bot",  // Acting agent
-    },
-}
+import "github.com/aistandardsio/agent-protocols/idjag"
+
+// Create assertion for token exchange
+assertion := idjag.NewAssertion(
+    "https://issuer.example.com",
+    "agent:calendar-bot",
+    []string{"https://auth.example.com"},
+    5 * time.Minute,
+)
+
+// Exchange for access token
+client := idjag.NewTokenExchangeClient("https://auth.example.com/token")
+resp, _ := client.ExchangeAssertion(ctx, signedAssertion, "read:data")
+```
+
+### AIMS - Workload Identity
+
+```go
+import "github.com/aistandardsio/agent-protocols/aims"
+
+// Create SPIFFE ID for agent
+spiffeID, _ := aims.NewSPIFFEID("example.com", "/agent/calendar-bot")
+
+// Create Workload Identity Token
+wit := aims.NewWIT(spiffeID, []string{"https://api.example.com"}, 1*time.Hour)
+signedWIT, _ := wit.Sign(privateKey, "key-1")
 ```
 
 ## Examples
 
-See the [idjag/examples](./idjag/examples/) directory for complete working demos:
+Each protocol includes working demos:
 
-- **[simple](./idjag/examples/simple/)** - Agent-only flow without human delegation
-- **[delegation](./idjag/examples/delegation/)** - Human-to-agent delegation flow
-
-Run an example:
-
+**AAuth:**
 ```bash
-go run ./idjag/examples/simple
+go run ./aauth/examples/simple      # Agent authentication
+go run ./aauth/examples/delegation  # Human-to-agent delegation
+```
+
+**ID-JAG:**
+```bash
+go run ./idjag/examples/simple      # Agent-only flow
+go run ./idjag/examples/delegation  # Human-to-agent delegation
+```
+
+**AIMS:**
+```bash
+go run ./aims/examples/simple       # WIT/WPT authentication
+go run ./aims/examples/mtls         # mTLS with X.509 SVID
+```
+
+**Zitadel Adapter:**
+```bash
+go run ./adapters/zitadel/examples/idjag  # ID-JAG token exchange
+go run ./adapters/zitadel/examples/aims   # AIMS WIT verification
+go run ./adapters/zitadel/examples/aauth  # AAuth agent authentication
 ```
 
 ## Documentation
 
-- **ID-JAG**: [Getting Started](./docs/idjag/getting-started.md) | [Protocol Overview](./docs/idjag/protocol-overview.md)
-- **AIMS**: [Getting Started](./docs/aims/getting-started.md) | [Overview](./docs/aims/overview.md)
+- **AAuth**: [Overview](./docs/aauth/overview.md) | [Getting Started](./docs/aauth/getting-started.md) | [Examples](./docs/aauth/examples.md)
+- **ID-JAG**: [Protocol Overview](./docs/idjag/protocol-overview.md) | [Getting Started](./docs/idjag/getting-started.md)
+- **AIMS**: [Overview](./docs/aims/overview.md) | [Getting Started](./docs/aims/getting-started.md)
+- **Zitadel Adapter**: [Overview](./docs/adapters/zitadel/overview.md) | [Getting Started](./docs/adapters/zitadel/getting-started.md)
 - [API Reference](https://pkg.go.dev/github.com/aistandardsio/agent-protocols)
 - [Changelog](./CHANGELOG.md)
+- [Full Documentation](https://aistandards.io/agent-protocols/)
 
 ## Related Specifications
 
+- [draft-hardt-oauth-aauth-protocol](https://datatracker.ietf.org/doc/draft-hardt-oauth-aauth-protocol/) - AAuth Protocol specification
 - [draft-ietf-oauth-identity-assertion-authz-grant](https://datatracker.ietf.org/doc/draft-ietf-oauth-identity-assertion-authz-grant/) - ID-JAG specification
 - [draft-klrc-aiagent-auth-00](https://datatracker.ietf.org/doc/html/draft-klrc-aiagent-auth-00) - AIMS specification
 - [draft-ietf-wimse-s2s-protocol](https://datatracker.ietf.org/doc/draft-ietf-wimse-s2s-protocol/) - WIMSE S2S Protocol (WIT/WPT)
-- [SPIFFE](https://spiffe.io/) - Secure Production Identity Framework For Everyone
+- [RFC 9421](https://www.rfc-editor.org/rfc/rfc9421) - HTTP Message Signatures
 - [RFC 8693](https://tools.ietf.org/html/rfc8693) - OAuth 2.0 Token Exchange
+- [SPIFFE](https://spiffe.io/) - Secure Production Identity Framework For Everyone
 
 ## License
 

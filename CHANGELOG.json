@@ -7,6 +7,55 @@
   "maintainers": ["grokify"],
   "releases": [
     {
+      "version": "v0.2.0",
+      "date": "2026-05-11",
+      "commit": "0f644d7",
+      "highlights": [
+        { "description": "AAuth protocol: HTTP message signatures (RFC 9421) with token exchange for AI agent authentication" },
+        { "description": "Zitadel adapter: Production integration for ID-JAG, AIMS, and AAuth with Zitadel OIDC infrastructure" },
+        { "description": "Unified navigation: AIStandards.io navbar integration across documentation site" }
+      ],
+      "added": [
+        { "description": "AAuth library (`aauth/`) implementing draft-hardt-oauth-aauth-protocol", "commit": "38fd1e1" },
+        { "description": "HTTP message signatures (RFC 9421) for request authentication", "commit": "8f595c6" },
+        { "description": "AAuth token types: `aa-agent+jwt` and `aa-auth+jwt`", "commit": "238c71f" },
+        { "description": "Agent client with automatic request signing transport", "commit": "18dbff8" },
+        { "description": "Resource server middleware for AAuth token validation", "commit": "a1921b1" },
+        { "description": "Auth server with token exchange and JWKS endpoints", "commit": "e80f1d2" },
+        { "description": "Discovery client for AAuth metadata retrieval", "commit": "29f9e26" },
+        { "description": "AAuth examples: simple agent, delegation, token exchange", "commit": "d5f7d1b" },
+        { "description": "AAuth delegation example with Person Server flow", "commit": "e73ae2e" },
+        { "description": "PIDL definitions for AAuth protocol flows", "commit": "303b4b8" },
+        { "description": "Zitadel adapter (`adapters/zitadel/`) for production OIDC integration", "commit": "46ceed0" },
+        { "description": "RFC 8693 token exchange client for ID-JAG assertions", "commit": "4b48d73" },
+        { "description": "RFC 7523 JWT profile grants with `oauth2.TokenSource` interface", "commit": "992a34f" },
+        { "description": "Token verification using Zitadel JWKS for all protocols", "commit": "d889c03" },
+        { "description": "HTTP middleware for Zitadel token validation", "commit": "c43ddf3" },
+        { "description": "Zitadel example applications for each protocol", "commit": "69015d1" },
+        { "description": "Multi-protocol integration demo application", "commit": "a63258e" }
+      ],
+      "changed": [
+        { "description": "Rename module from `github.com/grokify/agent-protocols` to `github.com/aistandardsio/agent-protocols`", "commit": "32340ad" },
+        { "description": "Documentation site uses unified AIStandards.io navigation bar", "commit": "77a30bf" }
+      ],
+      "fixed": [
+        { "description": "Use aistandards.io URLs to avoid mixed content blocking on GitHub Pages", "commit": "0f644d7" },
+        { "description": "Match aistandards.io navbar styling with three-segment title", "commit": "8124e1d" }
+      ],
+      "documentation": [
+        { "description": "AAuth protocol documentation: overview, getting started, examples, API reference", "commit": "0cd708a" },
+        { "description": "Zitadel adapter documentation: overview, getting started, examples, API reference", "commit": "6bb8043" },
+        { "description": "v0.2.0 release notes", "commit": "3983875" },
+        { "description": "Updated navigation for adapters section", "commit": "76d81b5" }
+      ],
+      "tests": [
+        { "description": "Unit tests for Zitadel adapter components", "commit": "75b9b4e" }
+      ],
+      "dependencies": [
+        { "description": "Add `golang.org/x/oauth2` for TokenSource interface", "commit": "c4fb160" }
+      ]
+    },
+    {
       "version": "v0.1.0",
       "date": "2026-04-19",
       "highlights": [
