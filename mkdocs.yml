@@ -32,7 +32,7 @@ theme:
     - content.tabs.link
 
 extra_css:
-  - https://aistandardsio.github.io/docs/css/aistandardsio-mkdocs.css
+  - https://aistandardsio.github.io/css/aistandardsio-mkdocs.css
 
 markdown_extensions:
   - pymdownx.highlight:
