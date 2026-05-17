@@ -278,17 +278,17 @@
     }
 
     /* ============================================
-       Parties Row (horizontal)
+       Parties Row (horizontal - 5 parties)
        ============================================ */
     .parties-row {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-sm);
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-xs);
     }
 
     .parties-row h2 {
       grid-column: 1 / -1;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--color-primary);
       margin-bottom: var(--space-xs);
     }
@@ -298,29 +298,31 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: var(--space-sm);
+      padding: var(--space-xs);
       background: var(--color-light);
-      border-radius: 6px;
+      border-radius: 4px;
       border: 1px solid var(--color-border);
     }
 
     .party-card .party-icon {
-      width: 40px;
-      height: 40px;
-      margin-bottom: var(--space-xs);
-      font-size: 1.4rem;
+      width: 32px;
+      height: 32px;
+      margin-bottom: 2px;
+      font-size: 1.2rem;
     }
 
     .party-card h3 {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       color: var(--color-secondary);
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
 
+    .party-card .party-icon.idp { background: #fefcbf; }
+
     .party-card p {
-      font-size: 1.0rem;
+      font-size: 0.82rem;
       color: var(--color-muted);
-      line-height: 1.35;
+      line-height: 1.25;
     }
 
     /* ============================================
@@ -946,21 +948,21 @@
     <!-- Sequence Diagram (Full Width) -->
     <section class="diagram-full">
       <h2>Protocol Flow (Delegation Mode)</h2>
-      <!-- Generated from idjag-sequence.mmd using: mmdc -i idjag-sequence.mmd -o idjag-sequence.svg -->
-      <svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" class="sequence-svg">
+      <!-- Based on IETF draft-ietf-oauth-identity-assertion-authz-grant and verified PIDL -->
+      <svg viewBox="0 0 750 290" xmlns="http://www.w3.org/2000/svg" class="sequence-svg">
         <style>
           /* Light theme (default) */
           .sequence-svg .participant-box { fill: #1a365d; }
-          .sequence-svg .participant-text { fill: white; font-family: -apple-system, sans-serif; font-size: 12px; font-weight: 600; }
+          .sequence-svg .participant-text { fill: white; font-family: -apple-system, sans-serif; font-size: 10px; font-weight: 600; }
           .sequence-svg .lifeline { stroke: #cbd5e0; stroke-width: 1; stroke-dasharray: 4,4; }
           .sequence-svg .message-line { stroke: #3182ce; stroke-width: 1.5; }
           .sequence-svg .message-line-dashed { stroke: #3182ce; stroke-width: 1.5; stroke-dasharray: 6,3; }
           .sequence-svg .message-arrow { fill: #3182ce; }
-          .sequence-svg .message-text { fill: #2d3748; font-family: -apple-system, sans-serif; font-size: 10px; }
+          .sequence-svg .message-text { fill: #2d3748; font-family: -apple-system, sans-serif; font-size: 9px; }
           .sequence-svg .message-text-muted { fill: #718096; }
-          .sequence-svg .trust-boundary { fill: rgba(192, 86, 33, 0.08); stroke: #c05621; stroke-width: 2; stroke-dasharray: 8,4; }
-          .sequence-svg .trust-label { fill: #c05621; font-family: -apple-system, sans-serif; font-size: 9px; font-weight: 600; }
-          .sequence-svg .step-number { fill: white; font-family: -apple-system, sans-serif; font-size: 9px; font-weight: bold; }
+          .sequence-svg .trust-boundary { fill: rgba(39, 103, 73, 0.08); stroke: #276749; stroke-width: 2; stroke-dasharray: 8,4; }
+          .sequence-svg .trust-label { fill: #276749; font-family: -apple-system, sans-serif; font-size: 8px; font-weight: 600; }
+          .sequence-svg .step-number { fill: white; font-family: -apple-system, sans-serif; font-size: 8px; font-weight: bold; }
           .sequence-svg .step-circle { fill: #3182ce; }
 
           /* Dark theme overrides */
@@ -971,133 +973,166 @@
           .theme-dark .sequence-svg .message-arrow { fill: #63b3ed; }
           .theme-dark .sequence-svg .message-text { fill: #e2e8f0; }
           .theme-dark .sequence-svg .message-text-muted { fill: #a0aec0; }
-          .theme-dark .sequence-svg .trust-boundary { fill: rgba(246, 173, 85, 0.15); stroke: #f6ad55; }
-          .theme-dark .sequence-svg .trust-label { fill: #f6ad55; }
+          .theme-dark .sequence-svg .trust-boundary { fill: rgba(104, 211, 145, 0.1); stroke: #68d391; }
+          .theme-dark .sequence-svg .trust-label { fill: #68d391; }
           .theme-dark .sequence-svg .step-circle { fill: #4299e1; }
         </style>
 
-        <!-- Participant boxes -->
-        <rect class="participant-box" x="30" y="5" width="90" height="24" rx="4"/>
-        <text class="participant-text" x="75" y="21" text-anchor="middle">Human User</text>
+        <!-- 5 Participants: Human, IdP/Issuer, Agent, Auth Server, Resource -->
+        <rect class="participant-box" x="10" y="5" width="70" height="22" rx="3"/>
+        <text class="participant-text" x="45" y="19" text-anchor="middle">Human</text>
 
-        <rect class="participant-box" x="200" y="5" width="90" height="24" rx="4"/>
-        <text class="participant-text" x="245" y="21" text-anchor="middle">Agent</text>
+        <rect class="participant-box" x="120" y="5" width="80" height="22" rx="3"/>
+        <text class="participant-text" x="160" y="19" text-anchor="middle">IdP / Issuer</text>
 
-        <rect class="participant-box" x="380" y="5" width="90" height="24" rx="4"/>
-        <text class="participant-text" x="425" y="21" text-anchor="middle">Auth Server</text>
+        <rect class="participant-box" x="250" y="5" width="70" height="22" rx="3"/>
+        <text class="participant-text" x="285" y="19" text-anchor="middle">Agent</text>
 
-        <rect class="participant-box" x="560" y="5" width="90" height="24" rx="4"/>
-        <text class="participant-text" x="605" y="21" text-anchor="middle">Resource</text>
+        <rect class="participant-box" x="380" y="5" width="85" height="22" rx="3"/>
+        <text class="participant-text" x="422" y="19" text-anchor="middle">Auth Server</text>
+
+        <rect class="participant-box" x="520" y="5" width="70" height="22" rx="3"/>
+        <text class="participant-text" x="555" y="19" text-anchor="middle">Resource</text>
 
         <!-- Lifelines -->
-        <line class="lifeline" x1="75" y1="29" x2="75" y2="270"/>
-        <line class="lifeline" x1="245" y1="29" x2="245" y2="270"/>
-        <line class="lifeline" x1="425" y1="29" x2="425" y2="270"/>
-        <line class="lifeline" x1="605" y1="29" x2="605" y2="270"/>
+        <line class="lifeline" x1="45" y1="27" x2="45" y2="280"/>
+        <line class="lifeline" x1="160" y1="27" x2="160" y2="280"/>
+        <line class="lifeline" x1="285" y1="27" x2="285" y2="280"/>
+        <line class="lifeline" x1="422" y1="27" x2="422" y2="280"/>
+        <line class="lifeline" x1="555" y1="27" x2="555" y2="280"/>
 
-        <!-- Step 1: Grant permission -->
-        <circle class="step-circle" cx="85" cy="48" r="7"/>
-        <text class="step-number" x="85" y="51" text-anchor="middle">1</text>
-        <line class="message-line" x1="75" y1="48" x2="235" y2="48"/>
-        <polygon class="message-arrow" points="235,48 228,44 228,52"/>
-        <text class="message-text" x="155" y="42">Grant permission</text>
+        <!-- Step 1: Human authenticates to IdP -->
+        <circle class="step-circle" cx="55" cy="42" r="6"/>
+        <text class="step-number" x="55" y="45" text-anchor="middle">1</text>
+        <line class="message-line" x1="45" y1="42" x2="150" y2="42"/>
+        <polygon class="message-arrow" points="150,42 144,39 144,45"/>
+        <text class="message-text" x="97" y="37">Authenticate (SSO)</text>
 
-        <!-- Trust Boundary box around step 2 -->
-        <rect class="trust-boundary" x="195" y="60" width="100" height="42" rx="4"/>
-        <text class="trust-label" x="200" y="70">Trust Boundary</text>
+        <!-- Step 1b: IdP returns session -->
+        <line class="message-line-dashed" x1="160" y1="55" x2="55" y2="55"/>
+        <polygon class="message-arrow" points="55,55 61,52 61,58"/>
+        <text class="message-text" x="107" y="50" class="message-text-muted">Session established</text>
 
-        <!-- Step 2: Create JWT Assertion -->
-        <circle class="step-circle" cx="255" cy="82" r="7"/>
-        <text class="step-number" x="255" y="85" text-anchor="middle">2</text>
-        <line class="message-line" x1="248" y1="82" x2="270" y2="82"/>
-        <line class="message-line" x1="270" y1="82" x2="270" y2="94"/>
-        <line class="message-line" x1="270" y1="94" x2="248" y2="94"/>
-        <polygon class="message-arrow" points="248,94 254,91 254,97"/>
-        <text class="message-text" x="278" y="86" font-size="9">Create JWT (sub=user, act=agent)</text>
+        <!-- Step 2: Human delegates to Agent -->
+        <circle class="step-circle" cx="55" cy="72" r="6"/>
+        <text class="step-number" x="55" y="75" text-anchor="middle">2</text>
+        <line class="message-line" x1="45" y1="72" x2="275" y2="72"/>
+        <polygon class="message-arrow" points="275,72 269,69 269,75"/>
+        <text class="message-text" x="160" y="67">Delegate task to agent</text>
 
-        <!-- Step 3: Token Exchange Request -->
-        <circle class="step-circle" cx="255" cy="120" r="7"/>
-        <text class="step-number" x="255" y="123" text-anchor="middle">3</text>
-        <line class="message-line" x1="245" y1="120" x2="415" y2="120"/>
-        <polygon class="message-arrow" points="415,120 408,116 408,124"/>
-        <text class="message-text" x="330" y="114">Token Exchange Request</text>
-        <text class="message-text" x="330" y="132" class="message-text-muted" font-size="9">grant_type=token-exchange, subject_token=JWT</text>
+        <!-- Step 3: Agent requests assertion from IdP/Issuer -->
+        <circle class="step-circle" cx="275" cy="92" r="6"/>
+        <text class="step-number" x="275" y="95" text-anchor="middle">3</text>
+        <line class="message-line" x1="285" y1="92" x2="170" y2="92"/>
+        <polygon class="message-arrow" points="170,92 176,89 176,95"/>
+        <text class="message-text" x="227" y="87">Request delegated assertion</text>
 
-        <!-- Step 4: Validate Assertion -->
-        <circle class="step-circle" cx="435" cy="155" r="7"/>
-        <text class="step-number" x="435" y="158" text-anchor="middle">4</text>
-        <line class="message-line" x1="428" y1="155" x2="450" y2="155"/>
-        <line class="message-line" x1="450" y1="155" x2="450" y2="170"/>
-        <line class="message-line" x1="450" y1="170" x2="428" y2="170"/>
-        <polygon class="message-arrow" points="428,170 434,167 434,173"/>
-        <text class="message-text" x="458" y="162">Validate assertion (verify sig, claims, actor)</text>
+        <!-- Trust Boundary: IdP/Issuer signs (NOT the agent) -->
+        <rect class="trust-boundary" x="115" y="102" width="95" height="48" rx="4"/>
+        <text class="trust-label" x="120" y="112">IdP Signs (not Agent)</text>
 
-        <!-- Step 5: Access Token -->
-        <circle class="step-circle" cx="415" cy="195" r="7"/>
-        <text class="step-number" x="415" y="198" text-anchor="middle">5</text>
-        <line class="message-line-dashed" x1="425" y1="195" x2="255" y2="195"/>
-        <polygon class="message-arrow" points="255,195 262,191 262,199"/>
-        <text class="message-text" x="340" y="189">Access Token (scoped, time-limited)</text>
+        <!-- Step 4: IdP creates and signs JWT -->
+        <circle class="step-circle" cx="170" cy="125" r="6"/>
+        <text class="step-number" x="170" y="128" text-anchor="middle">4</text>
+        <line class="message-line" x1="163" y1="125" x2="180" y2="125"/>
+        <line class="message-line" x1="180" y1="125" x2="180" y2="140"/>
+        <line class="message-line" x1="180" y1="140" x2="163" y2="140"/>
+        <polygon class="message-arrow" points="163,140 169,137 169,143"/>
+        <text class="message-text" x="188" y="132">Create & sign JWT (sub=user, act=agent)</text>
 
-        <!-- Step 6: API Request -->
-        <circle class="step-circle" cx="255" cy="225" r="7"/>
-        <text class="step-number" x="255" y="228" text-anchor="middle">6</text>
-        <line class="message-line" x1="245" y1="225" x2="595" y2="225"/>
-        <polygon class="message-arrow" points="595,225 588,221 588,229"/>
-        <text class="message-text" x="420" y="219">API Request (Authorization: Bearer token)</text>
+        <!-- Step 5: IdP returns signed assertion to Agent -->
+        <circle class="step-circle" cx="170" cy="162" r="6"/>
+        <text class="step-number" x="170" y="165" text-anchor="middle">5</text>
+        <line class="message-line-dashed" x1="160" y1="162" x2="275" y2="162"/>
+        <polygon class="message-arrow" points="275,162 269,159 269,165"/>
+        <text class="message-text" x="217" y="157">Signed ID-JAG assertion</text>
 
-        <!-- Step 7: Response -->
-        <circle class="step-circle" cx="595" cy="252" r="7"/>
-        <text class="step-number" x="595" y="255" text-anchor="middle">7</text>
-        <line class="message-line-dashed" x1="605" y1="252" x2="255" y2="252"/>
-        <polygon class="message-arrow" points="255,252 262,248 262,256"/>
-        <text class="message-text" x="430" y="246">Response</text>
+        <!-- Step 6: Agent sends to Auth Server (JWT Bearer per IETF draft) -->
+        <circle class="step-circle" cx="295" cy="182" r="6"/>
+        <text class="step-number" x="295" y="185" text-anchor="middle">6</text>
+        <line class="message-line" x1="285" y1="182" x2="412" y2="182"/>
+        <polygon class="message-arrow" points="412,182 406,179 406,185"/>
+        <text class="message-text" x="348" y="177">JWT Bearer (assertion=ID-JAG)</text>
+
+        <!-- Step 7: Auth Server validates and returns token -->
+        <circle class="step-circle" cx="432" cy="202" r="6"/>
+        <text class="step-number" x="432" y="205" text-anchor="middle">7</text>
+        <line class="message-line" x1="425" y1="202" x2="442" y2="202"/>
+        <line class="message-line" x1="442" y1="202" x2="442" y2="214"/>
+        <line class="message-line" x1="442" y1="214" x2="425" y2="214"/>
+        <polygon class="message-arrow" points="425,214 431,211 431,217"/>
+        <text class="message-text" x="450" y="207" class="message-text-muted">Verify IdP signature</text>
+
+        <line class="message-line-dashed" x1="422" y1="228" x2="295" y2="228"/>
+        <polygon class="message-arrow" points="295,228 301,225 301,231"/>
+        <text class="message-text" x="358" y="223">Access Token</text>
+
+        <!-- Step 8: Agent calls Resource -->
+        <circle class="step-circle" cx="295" cy="248" r="6"/>
+        <text class="step-number" x="295" y="251" text-anchor="middle">8</text>
+        <line class="message-line" x1="285" y1="248" x2="545" y2="248"/>
+        <polygon class="message-arrow" points="545,248 539,245 539,251"/>
+        <text class="message-text" x="415" y="243">API Request (Bearer token)</text>
+
+        <!-- Step 9: Resource responds -->
+        <circle class="step-circle" cx="545" cy="268" r="6"/>
+        <text class="step-number" x="545" y="271" text-anchor="middle">9</text>
+        <line class="message-line-dashed" x1="555" y1="268" x2="295" y2="268"/>
+        <polygon class="message-arrow" points="295,268 301,265 301,271"/>
+        <text class="message-text" x="425" y="263">Response</text>
       </svg>
     </section>
 
-    <!-- Protocol Parties (Horizontal Row) -->
+    <!-- Protocol Parties (Horizontal Row - 5 parties) -->
     <section class="parties-row">
       <h2>Protocol Parties</h2>
 
       <div class="party-card">
         <div class="party-icon human">👤</div>
-        <h3>Human (Delegator)</h3>
-        <p>Grants agent permission to act on their behalf</p>
+        <h3>Human</h3>
+        <p>Authenticates to IdP; delegates to agent</p>
+      </div>
+
+      <div class="party-card">
+        <div class="party-icon idp">🏛</div>
+        <h3>IdP / Issuer</h3>
+        <p>Creates and signs ID-JAG assertion</p>
       </div>
 
       <div class="party-card">
         <div class="party-icon agent">🤖</div>
-        <h3>Agent (Actor)</h3>
-        <p>Authenticates and performs actions; identified in <code>act</code> claim</p>
+        <h3>Agent</h3>
+        <p>Requests assertion; identified in <code>act</code> claim</p>
       </div>
 
       <div class="party-card">
         <div class="party-icon server">🔐</div>
-        <h3>Authorization Server</h3>
-        <p>Validates assertions, enforces policy, issues tokens</p>
+        <h3>Auth Server</h3>
+        <p>Validates IdP signature; issues access tokens</p>
       </div>
 
       <div class="party-card">
         <div class="party-icon server">📡</div>
-        <h3>Resource Server</h3>
-        <p>Protected API that accepts tokens and serves requests</p>
+        <h3>Resource</h3>
+        <p>Protected API; accepts tokens</p>
       </div>
     </section>
 
     <!-- Token Structure + Standards Row -->
     <section class="token-standards-row">
       <div class="token-section">
-        <h2>JWT Assertion Structure</h2>
+        <h2>ID-JAG JWT Structure</h2>
         <div class="jwt-structure">
+<span class="claim-special">// Header: typ="oauth-id-jag+jwt"</span>
 {
-  <span class="claim-key">"iss"</span>: <span class="claim-value">"https://agent.example.com"</span>,
+  <span class="claim-key">"iss"</span>: <span class="claim-value">"https://idp.example.com"</span>,
   <span class="claim-key">"sub"</span>: <span class="claim-value">"user@example.com"</span>,
   <span class="claim-key">"aud"</span>: <span class="claim-value">"https://auth.example.com"</span>,
+  <span class="claim-key">"client_id"</span>: <span class="claim-value">"agent-client-123"</span>,
+  <span class="claim-key">"jti"</span>: <span class="claim-value">"unique-token-id"</span>,
   <span class="claim-key">"exp"</span>: <span class="claim-value">1699900000</span>,
   <span class="claim-key">"iat"</span>: <span class="claim-value">1699896400</span>,
-  <span class="claim-special">"act"</span>: {
-    <span class="claim-key">"sub"</span>: <span class="claim-value">"agent-calendar-bot"</span>
-  }
+  <span class="claim-special">"act"</span>: { <span class="claim-key">"sub"</span>: <span class="claim-value">"agent:calendar"</span> }
 }
         </div>
       </div>
@@ -1307,16 +1342,15 @@
     <section class="implementation-section">
       <h2>Quick Start Implementation (Go)</h2>
       <div class="code-block">
-<span class="comment">// Create an assertion for agent acting on behalf of user</span>
-assertion := idjag.<span class="function">NewAssertion</span>(
-    idjag.<span class="function">WithSubject</span>(<span class="string">"user@example.com"</span>),
-    idjag.<span class="function">WithActor</span>(<span class="string">"calendar-agent"</span>),
-    idjag.<span class="function">WithAudience</span>(<span class="string">"https://auth.example.com"</span>),
-)
+<span class="comment">// 1. Request ID-JAG from IdP (token-exchange, requested_token_type=id-jag)</span>
+idpClient := idjag.<span class="function">NewIDJAGClient</span>(<span class="string">"https://idp.example.com/token"</span>)
+idjagResp, _ := idpClient.<span class="function">RequestIDJAG</span>(ctx, &idjag.IDJAGRequest{
+    SubjectToken: userIDToken, Audience: <span class="string">"https://api.example.com"</span>,
+})
 
-<span class="comment">// Sign and exchange for access token</span>
-signedJWT, _ := assertion.<span class="function">Sign</span>(privateKey)
-token, _ := client.<span class="function">Exchange</span>(ctx, signedJWT, <span class="string">"calendar:read"</span>)
+<span class="comment">// 2. Exchange ID-JAG at Resource AS (jwt-bearer)</span>
+jwtClient := idjag.<span class="function">NewJWTBearerClient</span>(<span class="string">"https://api.example.com/token"</span>)
+token, _ := jwtClient.<span class="function">Exchange</span>(ctx, idjagResp.AccessToken, <span class="string">"read"</span>)
       </div>
     </section>
 
@@ -1377,7 +1411,7 @@ token, _ := client.<span class="function">Exchange</span>(ctx, signedJWT, <span 
 
     <!-- Footer -->
     <footer class="footer">
-      ID-JAG Protocol Data Sheet v1.0 • License: MIT • Generated 2026-04
+      ID-JAG Protocol Data Sheet v1.1 • IETF-Compliant • License: MIT • Generated 2026-05
     </footer>
 
   </div>
