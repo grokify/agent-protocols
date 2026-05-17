@@ -2,6 +2,8 @@ package idjag
 
 import (
 	"crypto"
+	"crypto/rand"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -11,8 +13,11 @@ import (
 
 // Assertion represents an ID-JAG identity assertion.
 // It contains the standard JWT claims plus the optional "act" claim for delegation.
+// Per draft-ietf-oauth-identity-assertion-authz-grant, required claims are:
+// iss, sub, aud, client_id, jti, exp, iat.
 type Assertion struct {
 	// Issuer identifies the principal that issued the assertion (iss claim).
+	// This is the IdP Authorization Server identifier.
 	Issuer string `json:"iss"`
 
 	// Subject identifies the principal that is the subject of the assertion (sub claim).
@@ -21,8 +26,12 @@ type Assertion struct {
 	Subject string `json:"sub"`
 
 	// Audience identifies the recipients that the assertion is intended for (aud claim).
-	// Typically includes the authorization server's token endpoint.
+	// This is the Resource Authorization Server identifier.
 	Audience []string `json:"aud"`
+
+	// ClientID identifies the OAuth client at the Resource Authorization Server (client_id claim).
+	// This is a required claim per IETF draft.
+	ClientID string `json:"client_id"`
 
 	// IssuedAt is the time at which the assertion was issued (iat claim).
 	IssuedAt time.Time `json:"iat"`
@@ -34,11 +43,14 @@ type Assertion struct {
 	NotBefore time.Time `json:"nbf,omitempty"`
 
 	// JWTID is a unique identifier for the assertion (jti claim).
+	// This is a required claim per IETF draft.
 	JWTID string `json:"jti,omitempty"`
 
 	// Actor identifies the acting party in delegation scenarios (act claim).
 	// When present, Subject identifies the delegating principal and Actor
 	// identifies the party acting on their behalf.
+	// Note: The IETF draft does not normatively define act claim processing;
+	// this implementation follows RFC 8693 for delegation semantics.
 	Actor *Actor `json:"act,omitempty"`
 
 	// Claims contains additional custom claims not covered by the standard fields.
@@ -60,6 +72,7 @@ type Actor struct {
 }
 
 // NewAssertion creates a new Assertion with common fields populated.
+// A unique jti (JWT ID) is automatically generated per IETF draft requirements.
 func NewAssertion(issuer, subject string, audience []string, ttl time.Duration) *Assertion {
 	now := time.Now()
 	return &Assertion{
@@ -68,7 +81,15 @@ func NewAssertion(issuer, subject string, audience []string, ttl time.Duration) 
 		Audience:  audience,
 		IssuedAt:  now,
 		ExpiresAt: now.Add(ttl),
+		JWTID:     generateJWTID(),
 	}
+}
+
+// generateJWTID creates a unique identifier for JWT assertions.
+func generateJWTID() string {
+	b := make([]byte, 16)
+	_, _ = rand.Read(b)
+	return base64.RawURLEncoding.EncodeToString(b)
 }
 
 // NewDelegatedAssertion creates an assertion representing delegation.
@@ -77,6 +98,12 @@ func NewAssertion(issuer, subject string, audience []string, ttl time.Duration) 
 func NewDelegatedAssertion(issuer, subject, actorSubject string, audience []string, ttl time.Duration) *Assertion {
 	a := NewAssertion(issuer, subject, audience, ttl)
 	a.Actor = &Actor{Subject: actorSubject}
+	return a
+}
+
+// WithClientID sets the client_id claim (required per IETF draft).
+func (a *Assertion) WithClientID(clientID string) *Assertion {
+	a.ClientID = clientID
 	return a
 }
 
@@ -121,10 +148,13 @@ func (a *Assertion) DelegationChain() []*Actor {
 }
 
 // Sign creates a signed JWT string from the assertion.
+// The JWT header includes typ="oauth-id-jag+jwt" per IETF draft.
 func (a *Assertion) Sign(method jwt.SigningMethod, key crypto.PrivateKey, keyID string) (string, error) {
 	claims := a.toJWTClaims()
 
 	token := jwt.NewWithClaims(method, claims)
+	// Set typ header per draft-ietf-oauth-identity-assertion-authz-grant
+	token.Header["typ"] = JWTTypeIDJAG
 	if keyID != "" {
 		token.Header["kid"] = keyID
 	}
@@ -146,6 +176,11 @@ func (a *Assertion) toJWTClaims() jwt.MapClaims {
 		claims[ClaimAudience] = a.Audience[0]
 	} else if len(a.Audience) > 1 {
 		claims[ClaimAudience] = a.Audience
+	}
+
+	// client_id is required per IETF draft
+	if a.ClientID != "" {
+		claims[ClaimClientID] = a.ClientID
 	}
 
 	if !a.NotBefore.IsZero() {
@@ -243,6 +278,11 @@ func assertionFromClaims(claims jwt.MapClaims) (*Assertion, error) {
 		a.JWTID = jti
 	}
 
+	// Parse client_id
+	if clientID, ok := claims[ClaimClientID].(string); ok {
+		a.ClientID = clientID
+	}
+
 	// Parse actor claim
 	if act, ok := claims[ClaimActor].(map[string]any); ok {
 		a.Actor = actorFromMap(act)
@@ -252,7 +292,7 @@ func assertionFromClaims(claims jwt.MapClaims) (*Assertion, error) {
 	standardClaims := map[string]bool{
 		ClaimIssuer: true, ClaimSubject: true, ClaimAudience: true,
 		ClaimIssuedAt: true, ClaimExpirationTime: true, ClaimNotBefore: true,
-		ClaimJWTID: true, ClaimActor: true,
+		ClaimJWTID: true, ClaimActor: true, ClaimClientID: true,
 	}
 	for k, v := range claims {
 		if !standardClaims[k] {
