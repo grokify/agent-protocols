@@ -12,7 +12,14 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-// AuthorizationServer handles token exchange requests for ID-JAG assertions.
+// AuthorizationServer is the Resource Authorization Server that exchanges ID-JAG
+// assertions for access tokens. Per draft-ietf-oauth-identity-assertion-authz-grant,
+// the primary grant type is jwt-bearer (RFC 7523), though token-exchange is also supported.
+//
+// IETF-compliant flow:
+//  1. Agent obtains ID-JAG from IdP (via IdPAuthorizationServer)
+//  2. Agent sends ID-JAG to Resource AS using grant_type=jwt-bearer
+//  3. Resource AS validates ID-JAG and issues access token
 type AuthorizationServer struct {
 	// Verifier validates incoming assertions.
 	Verifier Verifier
@@ -92,7 +99,8 @@ func (s *AuthorizationServer) handleTokenExchange(w http.ResponseWriter, r *http
 		s.writeError(w, http.StatusBadRequest, ErrorInvalidRequest, "subject_token_type required")
 		return
 	}
-	if subjectTokenType != TokenTypeJWT {
+	// Accept both generic JWT and ID-JAG specific token types
+	if subjectTokenType != TokenTypeJWT && subjectTokenType != TokenTypeIDJAG {
 		s.writeError(w, http.StatusBadRequest, ErrorInvalidRequest, "unsupported subject_token_type")
 		return
 	}
