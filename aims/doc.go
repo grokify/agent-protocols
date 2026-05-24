@@ -52,6 +52,36 @@
 //	  "htu": "/api/v1/events"
 //	}
 //
+// # Token Parsing
+//
+// For inspection of tokens without verification (useful for debugging or logging):
+//
+//	wit, err := aims.ParseWIT(tokenString)
+//	if err != nil { /* handle error */ }
+//	fmt.Println("Subject:", wit.Subject)
+//
+//	wpt, err := aims.ParseWPT(proofString)
+//	if err != nil { /* handle error */ }
+//	fmt.Println("Method:", wpt.HTM, "URI:", wpt.HTU)
+//
+// # Token Verification
+//
+// For cryptographic verification of tokens with a public key:
+//
+//	// Verify a WIT
+//	verifier := aims.NewWITVerifier(publicKey).
+//	    WithExpectedIssuer("https://example.com").
+//	    WithExpectedAudience("https://api.example.com")
+//	wit, err := verifier.Verify(tokenString)
+//
+//	// Verify a WPT
+//	verifier := aims.NewWPTVerifier(publicKey).
+//	    WithExpectedIssuer("spiffe://example.com/agent/test")
+//	wpt, err := verifier.Verify(proofString)
+//
+//	// Verify WPT matches an HTTP request
+//	wpt, err := verifier.VerifyRequest(proofString, httpRequest)
+//
 // # References
 //
 //   - IETF Draft: https://datatracker.ietf.org/doc/html/draft-klrc-aiagent-auth-00
