@@ -119,13 +119,18 @@ run_example "aims/mtls (mutual TLS flow)" \
 
 if [ "$QUICK_MODE" = false ]; then
     echo ""
-    echo "--- Multi-Protocol Demo ---"
+    echo "--- Multi-Protocol Demos ---"
     echo ""
 
     run_example "demos/multi-protocol" \
         "demos/multi-protocol" \
         "Demo Completed Successfully" \
         60  # Longer timeout for multi-protocol demo
+
+    run_example "demos/protocol-bridge (cross-protocol bridging)" \
+        "demos/protocol-bridge" \
+        "Protocol Bridge Demo Complete" \
+        60
 
     echo ""
     echo "--- Adapter Examples ---"
