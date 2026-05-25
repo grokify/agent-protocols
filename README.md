@@ -45,6 +45,17 @@ This repository provides Go libraries for emerging agent-to-agent protocols:
   - [Examples](./aims/examples/) - Working demos (simple WIT/WPT, mTLS)
   - [PIDL Definitions](./aims/pidl/) - Protocol diagrams
 
+### Cross-Protocol Bridge
+
+- **[bridge](./bridge/)** - Cross-protocol interoperability with unified identity representation
+  - Multi-protocol HTTP middleware accepting ID-JAG, AIMS, and AAuth
+  - Canonical `Identity` type for protocol-agnostic code
+  - Protocol detection and token parsing
+- **[bridge/observe](./bridge/observe/)** - Observability integration via [OmniObserve](https://github.com/plexusone/omniobserve)
+  - Distributed tracing with auth spans
+  - Metrics: `auth.requests`, `auth.success`, `auth.failure`, `auth.duration`
+  - Structured logging with identity context
+
 ### Adapters
 
 Production-ready integrations with identity infrastructure:
@@ -147,6 +158,11 @@ go run ./adapters/sharkauth/examples/aauth  # AAuth with delegation grants
 **Ory Adapter:**
 ```bash
 go run ./adapters/ory/examples/idjag  # ID-JAG with Hydra
+```
+
+**Cross-Protocol Bridge:**
+```bash
+go run ./demos/protocol-bridge  # Multi-protocol authentication demo
 ```
 
 ## Documentation

@@ -7,6 +7,39 @@
   "maintainers": ["grokify"],
   "releases": [
     {
+      "version": "v0.5.0",
+      "date": "2026-05-24",
+      "highlights": [
+        { "description": "Cross-protocol bridging: New `bridge/` package enables interoperability between ID-JAG, AIMS, and AAuth" },
+        { "description": "Observability integration: New `bridge/observe/` package with distributed tracing, metrics, and logging via OmniObserve" },
+        { "description": "Protocol-bridge demo: Working example demonstrating multi-protocol authentication" }
+      ],
+      "added": [
+        { "description": "`bridge/` package with canonical identity and cross-protocol converters", "commit": "23ee068" },
+        { "description": "`bridge.Identity` canonical representation for protocol-agnostic code", "commit": "23ee068" },
+        { "description": "`bridge.DetectProtocol()` for automatic protocol detection from JWT typ header", "commit": "2d6a7c5" },
+        { "description": "`bridge.Parse()` for unified token parsing across protocols", "commit": "2d6a7c5" },
+        { "description": "`bridge.MultiProtocolMiddleware()` HTTP handler accepting any protocol", "commit": "373cef4" },
+        { "description": "`bridge/observe/` package for OmniObserve integration", "commit": "ed19b4f" },
+        { "description": "`observe.Middleware()` with distributed tracing, metrics, and logging", "commit": "ed19b4f" },
+        { "description": "`observe.DelegationTracker` for delegation chain tracing", "commit": "ed19b4f" },
+        { "description": "`demos/protocol-bridge/` cross-protocol demo application", "commit": "a3fd63c" }
+      ],
+      "documentation": [
+        { "description": "Bridge package documentation", "commit": "c077900" },
+        { "description": "OAuth to Agent migration guide", "commit": "48c9c96" },
+        { "description": "Hybrid authentication guide", "commit": "48c9c96" },
+        { "description": "Updated roadmap with Phase 7 and 8 progress", "commit": "e6d6db0" }
+      ],
+      "tests": [
+        { "description": "Comprehensive bridge package tests", "commit": "4eaaa30" },
+        { "description": "Protocol-bridge demo integration test", "commit": "f84073e" }
+      ],
+      "dependencies": [
+        { "description": "`github.com/plexusone/omniobserve` v0.10.0", "commit": "ed19b4f" }
+      ]
+    },
+    {
       "version": "v0.4.0",
       "date": "2026-05-24",
       "highlights": [
